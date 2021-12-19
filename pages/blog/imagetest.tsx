@@ -7,9 +7,8 @@ import Link from 'next/link';
 import Router from 'next/router'
 
 interface BlogPost {
-  title: string,
-  description: string,
-  content: string
+  name: string,
+  image: Array<any>
 }
 
 const CreatePost: NextPage = () => {
@@ -17,15 +16,18 @@ const CreatePost: NextPage = () => {
   const { register, handleSubmit } = useForm();
   
   const onSubmit = async (data: BlogPost) => {
+    console.log(data.image[0])
     try{
-      const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+      const formData = new FormData();
+      formData.append('image', data.image[0]);
+      formData.append('name', data.name);
+
+      console.log(formData);
+      const res = await fetch('http://localhost:4000/api/image', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        // headers: { 'Content-Type': 'multipart/form-data' },
+        body: formData
       })
-      console.log('Successfully created post!');
-      setShow(true);
-      setTimeout(() => Router.push('/blog'), 2000);
     } catch(err) {
       console.log(err);
     }
@@ -34,25 +36,16 @@ const CreatePost: NextPage = () => {
   return <>
     <Layout title="Create Post - Maxwell Yu">
       <div className="mx-5 my-3">
-        <h1 className='text-center m-4'>Create a post</h1>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group className='mb-3' controlId='title'>
-            <Form.Label>Title</Form.Label>
-            <Form.Control type='text' {...register("title", { max: 150, required: true })}/>
-          </Form.Group>
-          
-          <Form.Group className='mb-3' controlId='description'>
-            <Form.Label>Brief Description</Form.Label>
-            <Form.Control type='text' {...register("description", { max: 250, required: true })}/>
+        <h1 className='text-center m-4'>Test image uploading!</h1>
+        <Form onSubmit={handleSubmit(onSubmit)} /* enctype='multipart/form' */>
+          <Form.Group className='mb-3' controlId='name'>
+            <Form.Label>Name</Form.Label>
+            <Form.Control type='text' {...register("name", { max: 150, required: true })}/>
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='image'>
+            <Form.Label>Photo</Form.Label>
             <Form.Control type="file" accept="image/*" {...register("image", { required: true })} />
-          </Form.Group>
-
-          <Form.Group className='mb-3' controlId='content'>
-            <Form.Label>Content - Markdown Syntax</Form.Label>
-            <Form.Control as='textarea' rows={5} {...register("content", { required: true })} />
           </Form.Group>
 
           <Button variant="dark" type='submit'>

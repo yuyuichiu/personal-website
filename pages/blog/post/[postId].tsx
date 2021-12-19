@@ -22,7 +22,7 @@ const Post: NextPage<any> = (props) => {
 
 export const getStaticPaths = async () => {
   // Get array of possible post paths to render
-  const res = await fetch('http://localhost:4000/api/articles');
+  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
   const posts = await res.json();
 
   const allPaths = posts.map( (p: {id: number}) => { return { params: { postId: `${p.id}` } } } );
@@ -35,7 +35,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any)  =>{
   try {
-    const res = await fetch(`http://localhost:4000/api/articles/${context.params.postId}`);
+    const res = await fetch(`http://maxwellyu-blog.herokuapp.com/api/articles/${context.params.postId}`);
     const post = await res.json();
     return {
       props: { post: post[0] },

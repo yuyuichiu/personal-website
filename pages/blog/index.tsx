@@ -30,7 +30,7 @@ const Articles : NextPage<{articles: any}> = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:4000/api/articles');
+  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
   const articles = await res.json();
 
   return {

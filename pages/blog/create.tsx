@@ -9,21 +9,41 @@ import Router from 'next/router'
 interface BlogPost {
   title: string,
   description: string,
+  image: Array<any>,
   content: string
 }
 
 const CreatePost: NextPage = () => {
   const [show, setShow] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   
   const onSubmit = async (data: BlogPost) => {
     try{
-      const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      console.log('Successfully created post!');
+      if(data.image.length > 0){
+        if(data.image[0].size >= 1048576){
+          return console.log('File is too large');
+        }
+        
+        const formData = new FormData;
+        formData.append('image', data.image[0]);
+        formData.append('title', data.title);
+        formData.append('description', data.description);
+        formData.append('content', data.content);
+  
+        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+          method: 'POST',
+          body: formData
+        })
+      } else {
+        console.log(JSON.stringify(data))
+        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+      }
+      
+      
       setShow(true);
       setTimeout(() => Router.push('/blog'), 2000);
     } catch(err) {
@@ -38,21 +58,25 @@ const CreatePost: NextPage = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className='mb-3' controlId='title'>
             <Form.Label>Title</Form.Label>
-            <Form.Control type='text' {...register("title", { max: 150, required: true })}/>
+            <Form.Control isInvalid={errors.title} type='text' {...register("title", { max: 150, required: true })}/>
+            {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
           
           <Form.Group className='mb-3' controlId='description'>
             <Form.Label>Brief Description</Form.Label>
-            <Form.Control type='text' {...register("description", { max: 250, required: true })}/>
+            <Form.Control isInvalid={errors.description} type='text' {...register("description", { max: 250, required: true })}/>
+            {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='image'>
-            <Form.Control type="file" accept="image/*" {...register("image", { required: true })} />
+            <Form.Label>Preview Image</Form.Label>
+            <Form.Control type="file" accept="image/*" {...register("image")} />
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='content'>
             <Form.Label>Content - Markdown Syntax</Form.Label>
-            <Form.Control as='textarea' rows={5} {...register("content", { required: true })} />
+            <Form.Control isInvalid={errors.content} as='textarea' rows={5} {...register("content", { required: true })} />
+            {errors.content && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 
           <Button variant="dark" type='submit'>

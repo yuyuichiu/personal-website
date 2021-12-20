@@ -6,14 +6,11 @@ import Link from "next/link"
 const Post: NextPage<any> = (props) => {
   return <>
     <Layout title={`${props.post.title} - Maxwell Blog`}>
-      <div className="mx-5 my-3">
-        <Link href="/blog">
-          <a className="test-right">Go back</a>
-        </Link>
-        <h1>{props.post.title}</h1>
-        <small>Created: {props.post.creation_time.split("T")[0]}, by {props.post.author_name}</small>
+      <div className="mx-5 my-3 d-flex flex-column">
+        {props.post.preview_image && <img src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${props.post.preview_image}`} className='blogImage' />}
+        <h1 className='text-center'>{props.post.title}</h1>
+        <p className='text-center'>Created: {props.post.creation_time.split("T")[0]}, by {props.post.author_name}</p>
         <hr />
-        <img src="https://images.ctfassets.net/hrltx12pl8hq/3AnnkVqrlhrqb9hjlMBzKX/693a8e5d40b4b6c55a7673ca4c807eef/Girl-Stock?fit=fill&w=480&h=270"></img>
         <ReactMarkdown className="mt-3">{`${props.post.content}`}</ReactMarkdown>
       </div>
     </Layout>

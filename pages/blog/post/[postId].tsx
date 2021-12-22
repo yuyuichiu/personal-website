@@ -4,14 +4,15 @@ import ReactMarkdown from "react-markdown"
 import Link from "next/link"
 
 const Post: NextPage<any> = (props) => {
+  console.log(props)
   return <>
     <Layout title={`${props.post.title} - Maxwell Blog`}>
-      <div className="mx-5 my-3 d-flex flex-column">
-        {props.post.preview_image && <img src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${props.post.preview_image}`} className='blogImage' />}
+      {props.post.preview_image && <img src={`http://localhost:4000/public/uploads/${props.post.preview_image}`} className='blogImage' />}
+      <div className="mx-5 d-flex flex-column">
         <h1 className='text-center'>{props.post.title}</h1>
-        <p className='text-center'>Created: {props.post.creation_time.split("T")[0]}, by {props.post.author_name}</p>
+        <p className='text-center'>Created: {props.post.created_at.split("T")[0]}, by {props.post.author_name || 'Maxwell Yu (temp)'}</p>
         <hr />
-        <ReactMarkdown className="mt-3">{`${props.post.content}`}</ReactMarkdown>
+        <ReactMarkdown className="mt-3">{`${props.post.body}`}</ReactMarkdown>
       </div>
     </Layout>
   </>
@@ -19,10 +20,10 @@ const Post: NextPage<any> = (props) => {
 
 export const getStaticPaths = async () => {
   // Get array of possible post paths to render
-  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
+  const res = await fetch('http://localhost:4000/api/articles');
   const posts = await res.json();
 
-  const allPaths = posts.map( (p: {id: number}) => { return { params: { postId: `${p.id}` } } } );
+  const allPaths = posts.map( (p: {_id: string}) => { return { params: { postId: p._id } } } );
   
   return {
     paths: allPaths,
@@ -32,10 +33,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any)  =>{
   try {
-    const res = await fetch(`http://maxwellyu-blog.herokuapp.com/api/articles/${context.params.postId}`);
+    const res = await fetch(`http://localhost:4000/api/articles/${context.params.postId}`);
     const post = await res.json();
     return {
-      props: { post: post[0] },
+      props: { post: post },
       revalidate: 1
     }
   } catch {

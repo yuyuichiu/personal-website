@@ -27,7 +27,8 @@ a:hover {
 }
 
 .blogImage {
-  width: 50%;
+  width: 100%;
   height: 300px;
   margin: 0 auto;
+  object-fit: cover;
 }

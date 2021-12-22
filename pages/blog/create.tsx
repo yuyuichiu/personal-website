@@ -8,9 +8,9 @@ import Router from 'next/router'
 
 interface BlogPost {
   title: string,
-  description: string,
   image: Array<any>,
-  content: string
+  body: string,
+  tags: string[]
 }
 
 const CreatePost: NextPage = () => {
@@ -27,16 +27,16 @@ const CreatePost: NextPage = () => {
         const formData = new FormData;
         formData.append('image', data.image[0]);
         formData.append('title', data.title);
-        formData.append('description', data.description);
-        formData.append('content', data.content);
+        formData.append('body', data.body);
+        formData.append('tags', JSON.stringify(['tag01']));
   
-        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+        const res = await fetch('http://localhost:4000/api/articles', {
           method: 'POST',
           body: formData
         })
       } else {
         console.log(JSON.stringify(data))
-        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+        const res = await fetch('http://localhost:4000/api/articles', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -61,21 +61,15 @@ const CreatePost: NextPage = () => {
             <Form.Control isInvalid={errors.title} type='text' {...register("title", { max: 150, required: true })}/>
             {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
-          
-          <Form.Group className='mb-3' controlId='description'>
-            <Form.Label>Brief Description</Form.Label>
-            <Form.Control isInvalid={errors.description} type='text' {...register("description", { max: 250, required: true })}/>
-            {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
-          </Form.Group>
 
           <Form.Group className='mb-3' controlId='image'>
             <Form.Label>Preview Image</Form.Label>
             <Form.Control type="file" accept="image/*" {...register("image")} />
           </Form.Group>
 
-          <Form.Group className='mb-3' controlId='content'>
-            <Form.Label>Content - Markdown Syntax</Form.Label>
-            <Form.Control isInvalid={errors.content} as='textarea' rows={5} {...register("content", { required: true })} />
+          <Form.Group className='mb-3' controlId='body'>
+            <Form.Label>Body - Markdown Syntax</Form.Label>
+            <Form.Control isInvalid={errors.content} as='textarea' rows={5} {...register("body", { required: true })} />
             {errors.content && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 

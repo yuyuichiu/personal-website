@@ -16,11 +16,11 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
         </div>
         <ListGroup>
           {props.articles.map((article: any) => {
-            return <Link key={article.id} href={`/blog/post/${article.id}`} passHref>
+            return <Link key={article._id} href={`/blog/post/${article._id}`} passHref>
               <ListGroup.Item action>
                 <h6>{article.title}</h6>
-                <p>Created at: {article.creation_time.split('T')[0]}</p>
-                {article.preview_image && <img height={200} src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${article.preview_image}`}></img>}
+                {/* <p>Created at: {article.creation_time.split('T')[0]}</p> */}
+                {article.preview_image && <img height={200} src={`http://localhost:4000/public/uploads/${article.preview_image}`}/>}
               </ListGroup.Item>
             </Link>
           })}
@@ -31,7 +31,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
+  const res = await fetch('http://localhost:4000/api/articles');
   const articles = await res.json();
 
   return {

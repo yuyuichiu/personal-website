@@ -1,0 +1,36 @@
+.blogImage {
+  width: 80%;
+  margin-left: 10%;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.back {
+  display: flex;
+  * {
+    top: 120px;
+    margin-right: 5px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.delete {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.ad {
+  background-color: yellowgreen;
+  margin: 10px auto;
+  height: 200px;
+}
+
+.recommandation {
+  background-color: rgb(161, 255, 235);
+  margin: auto;
+  height: 400px;
+}

@@ -43,7 +43,6 @@ const CreatePost: NextPage = () => {
         })
       }
       
-      
       setShow(true);
       setTimeout(() => Router.push('/blog'), 2000);
     } catch(err) {
@@ -63,7 +62,7 @@ const CreatePost: NextPage = () => {
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='image'>
-            <Form.Label>Preview Image</Form.Label>
+            <Form.Label>Preview Image {`(< 1MB)`}</Form.Label>
             <Form.Control type="file" accept="image/*" {...register("image")} />
           </Form.Group>
 

@@ -30,13 +30,12 @@ const CreatePost: NextPage = () => {
         formData.append('body', data.body);
         formData.append('tags', JSON.stringify(['tag01']));
   
-        const res = await fetch('http://localhost:4000/api/articles', {
+        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
           method: 'POST',
           body: formData
         })
       } else {
-        console.log(JSON.stringify(data))
-        const res = await fetch('http://localhost:4000/api/articles', {
+        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)

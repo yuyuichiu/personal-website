@@ -1,21 +1,58 @@
+import { useState, useEffect } from 'react'
 import { NextPage } from "next"
 import Layout from "../../../components/Layout"
 import ReactMarkdown from "react-markdown"
 import Link from "next/link"
 import styles from '../../../styles/blogpost.module.scss'
 import { BsFillHouseDoorFill, BsFillPencilFill, BsFillTrashFill, BsTrashFill } from 'react-icons/bs'
+import { Modal, Button } from "react-bootstrap";
+import Router from 'next/router'
+
+interface DeleteWidget {
+  show: boolean,
+  onDelete: (deleteOption: boolean) => void
+}
+
+const DeleteWidget: React.FC<DeleteWidget> = (props) => {
+  return <Modal show={props.show} closeButton>
+    <Modal.Header closeButton>
+      <Modal.Title>Confirm Delete</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>Are you sure you want to delete the post??</Modal.Body>
+    <Modal.Footer>
+      <Button variant="dark" onClick={() => props.onDelete(false)}>
+        No
+      </Button>
+      <Button variant="danger" onClick={() => props.onDelete(true)}>
+        Delete post
+      </Button>
+    </Modal.Footer>
+  </Modal>
+}
 
 const Post: NextPage<any> = (props) => {
-  const onDelete = () => {
-    console.log('Delete Triggered.');
-    // Confirm Deletion
-    // Case - delete
-    // Case - cancel
+  const [askDelete , setAskDelete] = useState(false);
+  useEffect(() => { console.log(props) }, [])
+
+  const onDeleteRequest = () => {
+    setAskDelete(true);
   }
 
-  console.log(props);
+  const deleteHandler = (deleteOption: boolean) => {
+    setAskDelete(false);
+    if(deleteOption && Router.isReady) {
+      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, { method: 'DELETE' })
+        .then((res) => {
+          console.log('deleted.')
+          setTimeout(() => Router.push('/blog'), 1000);
+        })
+        .catch((err) => console.log(err.message))
+    }
+  }
+
   return <>
     <Layout title={`${props.post.title} - Maxwell Blog`}>
+      <DeleteWidget show={askDelete} onDelete={(d) => deleteHandler(d)}/>
       <div className='row'>
         <div className='col-12'>
           <h1 className='text-center mb-1 mt-3 fs-2'>{props.post.title}</h1>
@@ -26,9 +63,9 @@ const Post: NextPage<any> = (props) => {
           {props.post.preview_image && 
           <img 
             className={`${styles.blogImage}`}
-            src={`http://localhost:4000/public/uploads/${props.post.preview_image}`}
+            src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${props.post.preview_image}`}
           />}
-          <ReactMarkdown className="m-3">{`${props.post.body}`}</ReactMarkdown>
+          <ReactMarkdown className="mt-3">{`${props.post.body}`}</ReactMarkdown>
         </div>
         <div className="col-sm-3">
           <div className={`${styles.back}`}>
@@ -38,7 +75,7 @@ const Post: NextPage<any> = (props) => {
             <Link href={`/blog/update/${props.post._id}`}>
               <BsFillPencilFill size={30}/>
             </Link>
-            <button onClick={() => onDelete()} className={styles.delete}>
+            <button onClick={() => onDeleteRequest()} className={styles.delete}>
               <BsTrashFill size={30} style={{ color: '#CB0101' }}/>
             </button>
           </div>
@@ -53,7 +90,7 @@ const Post: NextPage<any> = (props) => {
 
 export const getStaticPaths = async () => {
   // Get array of possible post paths to render
-  const res = await fetch('http://localhost:4000/api/articles');
+  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
   const posts = await res.json();
 
   const allPaths = posts.map( (p: {_id: string}) => { return { params: { postId: p._id } } } );
@@ -66,7 +103,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any)  =>{
   try {
-    const res = await fetch(`http://localhost:4000/api/articles/${context.params.postId}`);
+    const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${context.params.postId}`);
     const post = await res.json();
     return {
       props: { post: post },

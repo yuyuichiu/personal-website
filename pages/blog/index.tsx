@@ -4,6 +4,7 @@ import { ListGroup, Button } from 'react-bootstrap'
 import Link from 'next/link'
 import { BsArrowUpCircle, BsSearch } from "react-icons/bs";
 import styles from '../../styles/blog.module.scss'
+import ReactMarkdown from 'react-markdown';
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
   console.log(props.articles)
@@ -19,11 +20,10 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
               <div className={`${styles.tag} ${styles.active}`}>Experiment 2</div>
             </div>
             <div className={`${styles.right}`}>
-              <Link href='/blog/create' passHref>
+              <Link href='/blog/create'>
                 <BsArrowUpCircle size={24}/>
               </Link>
               <div>
-
                 <BsSearch size={28}/>
                 <input type='text' />
               </div>
@@ -33,14 +33,16 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
 
         <ListGroup className={`${styles.posts}`}>
           {props.articles.map((article: any) => {
-            return <Link key={article._id} href={`/blog/post/${article._id}`} passHref>
+            return <Link key={article._id} href={`/blog/posts/${article._id}`} passHref>
               <ListGroup.Item className={`${styles.post}`} action>
-                {article.preview_image && <img src={`http://localhost:4000/public/uploads/${article.preview_image}`}/>}
+                {article.preview_image && <img src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${article.preview_image}`}/>}
                 <div className={`${styles.post_info}`}>
                   <h3>{article.title}</h3>
                   <div className={`${styles.subset}`}>
                     <small>Created at: {article.created_at.split('T')[0]}</small>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit placeat consequatur fugit explicabo cumque, ipsa, officia perspiciatis culpa? </p>
+                    <p>
+                      <ReactMarkdown>{`${article.body.split('\n')[0]}`}</ReactMarkdown>
+                    </p>
                   </div>
                 </div>
               </ListGroup.Item>
@@ -56,7 +58,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:4000/api/articles');
+  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
   const articles = await res.json();
 
   return {

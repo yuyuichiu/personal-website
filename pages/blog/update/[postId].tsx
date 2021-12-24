@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap'
 import Layout from '../../../components/Layout'
 import { useForm } from "react-hook-form";
@@ -18,18 +18,17 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
   const router = useRouter();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
+  // Initialize form data
   useEffect(() => {
     // Function to initialize form values (because of the nature of edit)
     async function getPostData() {
       if(router.isReady) {
-        const res = await fetch(`http://localhost:4000/api/articles/${router.query.postId}`);
+        const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`);
         const data = await res.json();
-        console.log(data);
         setValue('title', data.title);
         setValue('body', data.body);
         setReady(true);
       } else {
-        setValue('title', 'Loading data...');
         setValue('body', 'Loading data...');
         return
       }
@@ -38,9 +37,18 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
     getPostData();
   }, [router.isReady])
 
-  const onSubmit = () => {
+  const onSubmit = (data: { title: string, body: string }) => {
     if(ready){
-      console.log('submit.')
+      fetch(`http://localhost:4000/api/articles/${router.query.postId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: data.title, body: data.body })
+        })
+        .then((res) => {
+          setShow(true);
+          router.push(`/blog/posts/${router.query.postId}`);
+        })
+        .catch((error) => console.log(error))
     }
   }
 
@@ -63,17 +71,18 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
         <Button variant="dark" type='submit'>
           Submit
         </Button>
-        <Link href="/blog">
+        <Link href={router.isReady ? `/blog/posts/${router.query.postId}` : '/blog'}>
         <Button variant="" type='button' disabled={!ready}>
           Back
         </Button></Link>
       </Form>
 
+      {/* Popup Widget on update completion */}
       <Modal show={show} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Post Created!</Modal.Title>
+          <Modal.Title>Post Updated!</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Post created successfully. You will be redirected soon...</Modal.Body>
+        <Modal.Body>Post updated successfully. You will be redirected soon...</Modal.Body>
         <Modal.Footer>
           <Button variant='dark' onClick={() => setShow(false)}>Got it!</Button>
         </Modal.Footer>

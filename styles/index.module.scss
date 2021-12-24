@@ -40,6 +40,7 @@
     border: 68px solid transparent;
     border-left: 120px solid rgb(255, 255, 159);
     z-index: -1;
+    pointer-events: none; // to enable scrolling of underlying element 
 
     @media (max-width: 570px) {
       display: none;
@@ -61,6 +62,7 @@
     z-index: -1;
     transform-origin: center;
     animation: spin 10s infinite linear;
+    pointer-events: none; // to enable scrolling of underlying element 
   }
 
   .profilePicture {

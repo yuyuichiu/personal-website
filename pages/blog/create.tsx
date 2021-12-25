@@ -15,12 +15,15 @@ interface BlogPost {
 
 const CreatePost: NextPage = () => {
   const [show, setShow] = useState(false);
+  const [fileTooLarge, setFileTooLarge] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
   
   const onSubmit = async (data: BlogPost) => {
     try{
+      setFileTooLarge(false);
       if(data.image.length > 0){
         if(data.image[0].size >= 1048576){
+          setFileTooLarge(true);
           return console.log('File is too large');
         }
         
@@ -62,12 +65,14 @@ const CreatePost: NextPage = () => {
 
           <Form.Group className='mb-3' controlId='image'>
             <Form.Label>Preview Image {`(< 1MB)`}</Form.Label>
-            <Form.Control type="file" accept="image/*" {...register("image")} />
+            <Form.Control isInvalid={errors.image} type="file" accept="image/*" {...register("image", { required: true })} />
+            {errors.image && <Form.Text className='text-danger'>This field is required</Form.Text>}
+            {fileTooLarge && <Form.Text className='text-danger'>File size exceeds limit of 1MB.</Form.Text>}
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='body'>
             <Form.Label>Body - Markdown Syntax</Form.Label>
-            <Form.Control isInvalid={errors.content} as='textarea' rows={5} {...register("body", { required: true })} />
+            <Form.Control isInvalid={errors.content} as='textarea' rows={5} placeholder='Markdown Syntax Applicable' {...register("body", { required: true })} />
             {errors.content && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 

@@ -72,3 +72,63 @@ a:hover {
     }
   }
 }
+
+.loading {
+  z-index: 1000;
+
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+    transition: visibility 0s 2s, opacity 1s linear;
+
+    .ball{
+      *{
+        animation: none;
+      }
+    }
+  }
+
+  .overlay {
+    background-color: var(--main-bg-color);
+    opacity: 1;
+  }
+
+  .ball {
+    position: fixed;
+    display: flex;
+
+    @keyframes leftball {
+      0% { transform: translateX(0); z-index: 2; }
+      49.99% { transform: translateX(50px); z-index: 2; }
+      50% { transform: translateX(50px); z-index: 1;}
+      100% { transform: translateX(0); z-index: 1;}
+    }
+
+    @keyframes rightball {
+      0% { transform: translateX(0px);}
+      50% { transform: translateX(-50px);}
+      100% { transform: translateX(0px);}
+    }
+    
+    .left {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgb(244, 247, 67);
+      animation: 0.8s linear infinite leftball;
+      animation-delay: 0s;
+    }
+
+    .right {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgb(167, 168, 68);
+      z-index: 1;
+      animation: 0.8s linear infinite rightball;
+      animation-delay: 0s;
+    }
+  }
+}

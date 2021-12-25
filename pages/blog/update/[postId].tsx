@@ -39,7 +39,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
 
   const onSubmit = (data: { title: string, body: string }) => {
     if(ready){
-      fetch(`http://localhost:4000/api/articles/${router.query.postId}`, {
+      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title: data.title, body: data.body })

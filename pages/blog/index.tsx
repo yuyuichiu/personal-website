@@ -41,7 +41,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
                   <div className={`${styles.subset}`}>
                     <small>Created at: {article.created_at.split('T')[0]}</small>
                     <p>
-                      <ReactMarkdown>{`${article.body.split('\n')[0]}`}</ReactMarkdown>
+                      {`${article.body.match(/[A-Za-z0-9,.?! ]+/)[0].substr(0,120) || ""}`}
                     </p>
                   </div>
                 </div>

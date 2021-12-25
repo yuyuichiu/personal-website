@@ -6,7 +6,8 @@ import Link from "next/link"
 import styles from '../../../styles/blogpost.module.scss'
 import { BsFillHouseDoorFill, BsFillPencilFill, BsFillTrashFill, BsTrashFill } from 'react-icons/bs'
 import { Modal, Button } from "react-bootstrap";
-import Router from 'next/router'
+import remarkGfm from 'remark-gfm'
+import router from 'next/router'
 
 interface DeleteWidget {
   show: boolean,
@@ -30,6 +31,11 @@ const DeleteWidget: React.FC<DeleteWidget> = (props) => {
   </Modal>
 }
 
+const componentConfig = {
+  table: ({...props}) => <table className="table" {...props}></table>,
+  img: ({...props}) => <img style={{maxWidth: '300px'}} {...props} />,
+}
+
 const Post: NextPage<any> = (props) => {
   const [askDelete , setAskDelete] = useState(false);
   useEffect(() => { console.log(props) }, [])
@@ -40,11 +46,11 @@ const Post: NextPage<any> = (props) => {
 
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
-    if(deleteOption && Router.isReady) {
+    if(deleteOption && router.isReady) {
       fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, { method: 'DELETE' })
         .then((res) => {
           console.log('deleted.')
-          setTimeout(() => Router.push('/blog'), 1000);
+          setTimeout(() => router.back(), 1000);
         })
         .catch((err) => console.log(err.message))
     }
@@ -65,7 +71,9 @@ const Post: NextPage<any> = (props) => {
             className={`${styles.blogImage}`}
             src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${props.post.preview_image}`}
           />}
-          <ReactMarkdown className="mt-3">{`${props.post.body}`}</ReactMarkdown>
+          <ReactMarkdown className="mt-3" remarkPlugins={[remarkGfm]} components={componentConfig}>
+            {`${props.post.body}`}
+          </ReactMarkdown>
         </div>
         <div className="col-sm-3">
           <div className={`${styles.back}`}>

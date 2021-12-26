@@ -69,7 +69,7 @@ const Post: NextPage<any> = (props) => {
           {props.post.preview_image && 
           <img 
             className={`${styles.blogImage}`}
-            src={`https://maxwellyu-blog.herokuapp.com/public/uploads/${props.post.preview_image}`}
+            src={props.post.preview_image}
           />}
           <ReactMarkdown className="mt-3" remarkPlugins={[remarkGfm]} components={componentConfig}>
             {`${props.post.body}`}

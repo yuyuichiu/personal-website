@@ -46,7 +46,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
         })
         .then((res) => {
           setShow(true);
-          router.push(`/blog/posts/${router.query.postId}`);
+          setTimeout(() => router.push(`/blog/posts/${router.query.postId}`), 1000);
         })
         .catch((error) => console.log(error))
     }

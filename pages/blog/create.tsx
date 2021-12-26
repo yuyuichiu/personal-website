@@ -20,13 +20,12 @@ const CreatePost: NextPage = () => {
   
   const onSubmit = async (data: BlogPost) => {
     try{
+      console.log('Submiting')
       setFileTooLarge(false);
-      if(data.image.length > 0){
-        if(data.image[0].size >= 1048576){
-          setFileTooLarge(true);
-          return console.log('File is too large');
-        }
-        
+      if(data.image[0].size >= 1048576){
+        setFileTooLarge(true);
+        return console.log('File is too large');
+      } else {
         const formData = new FormData;
         formData.append('image', data.image[0]);
         formData.append('title', data.title);
@@ -36,19 +35,14 @@ const CreatePost: NextPage = () => {
         const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
           method: 'POST',
           body: formData
-        })
-      } else {
-        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+        }).then(() => {
+          setShow(true);
+          setTimeout(() => Router.push('/blog'), 2000);
         })
       }
-      
-      setShow(true);
-      setTimeout(() => Router.push('/blog'), 2000);
     } catch(err) {
       console.log(err);
+      console.log('Request ended with an error')
     }
   }
 

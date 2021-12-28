@@ -4,7 +4,6 @@ import { ListGroup, Button } from 'react-bootstrap'
 import Link from 'next/link'
 import { BsArrowUpCircle, BsSearch } from "react-icons/bs";
 import styles from '../../styles/blog.module.scss'
-import ReactMarkdown from 'react-markdown';
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
   console.log(props.articles)
@@ -20,8 +19,8 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
               <div className={`${styles.tag} ${styles.active}`}>Experiment 2</div>
             </div>
             <div className={`${styles.right}`}>
-              <Link href='/blog/create'>
-                <BsArrowUpCircle size={24}/>
+              <Link href='/blog/create' passHref>
+                <div className='p-0 m-0 btn'><BsArrowUpCircle size={24}/></div>
               </Link>
               <div>
                 <BsSearch size={28}/>

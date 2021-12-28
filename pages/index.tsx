@@ -8,7 +8,7 @@ import ProfilePic from '../public/assets/cropped_yuyuichiu_bg_2.png';
 const Home: NextPage = () => {
   return (
     <Layout>
-      <div className={`${styles.indexContainer}`}>
+      <div className={`${styles.indexContainer}`} onLoad={() => console.log('loaded completely.')}>
         <div className='row m-0'>
           <div className={`col-lg-8 col-md-8 col-sm-12 ${styles.left}`}>
             <aside className={`${styles.rectangle}`}></aside>

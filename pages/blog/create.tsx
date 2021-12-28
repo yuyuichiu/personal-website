@@ -14,16 +14,18 @@ interface BlogPost {
 }
 
 const CreatePost: NextPage = () => {
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [fileTooLarge, setFileTooLarge] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
   
   const onSubmit = async (data: BlogPost) => {
     try{
-      console.log('Submiting')
+      setLoading(true);
       setFileTooLarge(false);
       if(data.image[0].size >= 1048576){
         setFileTooLarge(true);
+        setLoading(false);
         return console.log('File is too large');
       } else {
         const formData = new FormData;
@@ -42,6 +44,7 @@ const CreatePost: NextPage = () => {
       }
     } catch(err) {
       console.log(err);
+      setLoading(false);
       console.log('Request ended with an error')
     }
   }
@@ -53,25 +56,41 @@ const CreatePost: NextPage = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className='mb-3' controlId='title'>
             <Form.Label>Title</Form.Label>
-            <Form.Control isInvalid={errors.title} type='text' {...register("title", { max: 150, required: true })}/>
+            <Form.Control
+              isInvalid={errors.title}
+              disabled={loading}
+              type='text'
+              {...register("title", { max: 150, required: true })}/>
             {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='image'>
             <Form.Label>Preview Image {`(< 1MB)`}</Form.Label>
-            <Form.Control isInvalid={errors.image} type="file" accept="image/*" {...register("image", { required: true })} />
+            <Form.Control
+              isInvalid={errors.image}
+              disabled={loading}
+              type="file"
+              accept="image/*" {...register("image", { required: true })}
+            />
             {errors.image && <Form.Text className='text-danger'>This field is required</Form.Text>}
             {fileTooLarge && <Form.Text className='text-danger'>File size exceeds limit of 1MB.</Form.Text>}
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='body'>
             <Form.Label>Body - Markdown Syntax</Form.Label>
-            <Form.Control isInvalid={errors.content} as='textarea' rows={5} placeholder='Markdown Syntax Applicable' {...register("body", { required: true })} />
+            <Form.Control
+              isInvalid={errors.content}
+              disabled={loading}
+              as='textarea'
+              rows={5}
+              placeholder='Markdown Syntax Applicable'
+              {...register("body", { required: true })} 
+            />
             {errors.content && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 
           <Button variant="dark" type='submit'>
-            Submit
+            {loading ? 'Loading...' : 'Submit'}
           </Button>
           <Link href="/blog">
           <Button variant="" type='button'>

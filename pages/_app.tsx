@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app'
 import LoadingWidget from '../components/LoadingWidget';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {

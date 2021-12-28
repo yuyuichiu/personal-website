@@ -47,7 +47,11 @@ const Post: NextPage<any> = (props) => {
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
     if(deleteOption && router.isReady) {
-      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, { method: 'DELETE' })
+      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type' : "application/json" },
+        body: JSON.stringify({"img" : props.post.preview_image})
+      })
         .then((res) => {
           console.log('deleted.')
           setTimeout(() => router.back(), 1000);

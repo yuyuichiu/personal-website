@@ -81,7 +81,7 @@ a:hover {
     opacity: 0;
     user-select: none;
     pointer-events: none;
-    transition: visibility 0s 2s, opacity 1s linear;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
 
     .ball{
       *{

@@ -3,21 +3,31 @@ import type { NextPage } from "next";
 import { useState } from 'react'
 import { Form, Button, Modal } from "react-bootstrap";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import router from 'next/router';
 
-interface Newuser {
+interface NewUser {
   username: String,
-  password: String
+  password: String,
+  confirmPassword: String
 }
 
 const Register: NextPage = () => {
   const [show, setShow] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
+  const [pwNotMatch, setPwNotMatch] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data: Newuser) => {
+  const onSubmit: SubmitHandler<NewUser> = (data) => {
     setLoading(true);
+    setPwNotMatch(false);
+
+    if(data.password !== data.confirmPassword) {
+      setLoading(false);
+      setPwNotMatch(true);
+      return console.log(errors);
+    }
+
     fetch('http://localhost:4000/api/users/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -30,6 +40,7 @@ const Register: NextPage = () => {
       setShow(true);
       setLoading(false);
       setTimeout(() => router.push('/login'), 1000);
+      setTimeout(() => setShow(false), 1000);
     }).catch((error) => {
       console.log(error.message);
       setLoading(false);
@@ -65,6 +76,17 @@ const Register: NextPage = () => {
               Your password will be masked confidentially with hash function.
           </Form.Text>
           {errors.password && <p className='text-danger'>Please enter a password with at least 6 characters</p>}
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="confirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            isInvalid={pwNotMatch}
+            disabled={loading}
+            {...register('confirmPassword', { required: true, minLength: 6 })}
+          />
+          {pwNotMatch && <p className='text-danger'>Password does not match.</p>}
         </Form.Group>
 
         <Button variant="dark" type="submit">Register!</Button>

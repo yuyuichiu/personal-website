@@ -37,13 +37,13 @@ const componentConfig = {
 }
 
 const Post: NextPage<any> = (props) => {
+  useEffect(() => {
+    
+  }, []);
+
   const [askDelete , setAskDelete] = useState(false);
-  useEffect(() => { console.log(props) }, [])
 
-  const onDeleteRequest = () => {
-    setAskDelete(true);
-  }
-
+  const onDeleteRequest = () => { setAskDelete(true); }
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
     if(deleteOption && router.isReady) {

@@ -1,16 +1,20 @@
 import type { NextPage } from 'next'
+import { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { ListGroup, Button } from 'react-bootstrap'
-import Link from 'next/link'
+import Link from 'next/link';
+import Cookies from 'js-cookie';
 import { BsArrowUpCircle, BsSearch } from "react-icons/bs";
 import styles from '../../styles/blog.module.scss'
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
-  console.log(props.articles)
+  useEffect(() => {
+    console.log(props.articles);
+    console.log(Cookies.get());
+  }, [])
   return <>
     <Layout title="Maxwell Blog">
       <section className={`${styles.blog}`}>
-        
         <nav className={`${styles.toolbar}`}>
           <h2 className='m-2'>Blog</h2>
           <div className={`${styles.search}`}>

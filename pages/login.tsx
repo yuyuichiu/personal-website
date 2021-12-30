@@ -5,6 +5,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import router from "next/router";
+import cookie from 'js-cookie'
 
 interface LoginUser {
   username: String,
@@ -22,6 +23,7 @@ const Login: NextPage = () => {
     const response = await fetch('http://localhost:4000/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({ username: data.username, password: data.password })
     })
     const result = await response.json();
@@ -29,9 +31,10 @@ const Login: NextPage = () => {
     if(result.error) {
       setFailure(result.error);
     } else {
-      console.log(result)
       setFailure(''); // Success
       setShow(true);
+      console.log('Set-Cookie: token=' + result.session)
+      cookie.set('token', result.session);
       setTimeout(() => router.push('/blog'), 1000);
       setTimeout(() => setShow(false), 1000);
     }

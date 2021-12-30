@@ -1,41 +1,39 @@
-import { Button, Nav, Navbar, Container } from 'react-bootstrap'
-import Link from 'next/link'
-import brandIcon from '../public/assets/treeicon.webp'
-import { BsFillPersonFill } from 'react-icons/bs'
+import { useState, useEffect } from "react";
+import { Button, Nav, Navbar, Container } from "react-bootstrap";
+import Link from "next/link";
+import brandIcon from "../public/assets/treeicon.webp";
+import LoginStatusBar from "./LoginStatusBar";
 
-const NavBar : React.FC = () => {
-  return <>
-    <Navbar className='navbar_main'>
-      <Container>
-        <Link href="/" passHref>
+const NavBar: React.FC = () => {
+  return (
+    <>
+      <Navbar className="navbar_main">
+        <Container>
           <Navbar.Brand className="left">
-            <img src={brandIcon.src} alt='Brand Icon' height={30}/>
-            <h1 className='me-4'>&nbsp;MaxWebDev</h1>
-            <Link href='/login' passHref>
-              <div className='d-flex align-items-center'>
-                <BsFillPersonFill size={20}/>
-                <small className='text-secondary ms-1'>Login</small>
+            <Link href="/" passHref>
+              <div className="d-flex align-items-end">
+                <img src={brandIcon.src} alt="Brand Icon" height={30} />
+                <h1 className="me-4">&nbsp;MaxWebDev</h1>
               </div>
             </Link>
+            <LoginStatusBar />
           </Navbar.Brand>
-        </Link>
-        <Nav className='right'>
-          {/* <Link href="/about" passHref>
-            <Nav.Link className="px-3">About</Nav.Link>
-          </Link> */}
-          <Link href="/blog" passHref>
-            <Nav.Link className="px-3">Blog</Nav.Link>
-          </Link>
-          <Link href="/projects" passHref>
-            <Nav.Link className="px-3">Projects</Nav.Link>
-          </Link>
-          <Link href="/contact" passHref>
-            <Nav.Link className="px-3">Contact</Nav.Link>
-          </Link>
-        </Nav>
-      </Container>
-    </Navbar>
-  </>
-}
 
-export default NavBar
+          <Nav className="right">
+            <Link href="/blog" passHref>
+              <Nav.Link className="px-3">Blog</Nav.Link>
+            </Link>
+            <Link href="/projects" passHref>
+              <Nav.Link className="px-3">Projects</Nav.Link>
+            </Link>
+            <Link href="/contact" passHref>
+              <Nav.Link className="px-3">Contact</Nav.Link>
+            </Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
+  );
+};
+
+export default NavBar;

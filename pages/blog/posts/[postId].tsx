@@ -37,18 +37,15 @@ const componentConfig = {
 }
 
 const Post: NextPage<any> = (props) => {
-  useEffect(() => {
-    
-  }, []);
-
   const [askDelete , setAskDelete] = useState(false);
 
   const onDeleteRequest = () => { setAskDelete(true); }
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
     if(deleteOption && router.isReady) {
-      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, {
+      fetch(`http://localhost:4000/api/articles/${props.post._id}`, {
         method: 'DELETE',
+        credentials: 'include',
         headers: { 'Content-Type' : "application/json" },
         body: JSON.stringify({"img" : props.post.preview_image})
       })

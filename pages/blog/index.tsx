@@ -1,17 +1,18 @@
 import type { NextPage } from 'next'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { ListGroup, Button } from 'react-bootstrap'
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { BsArrowUpCircle, BsSearch } from "react-icons/bs";
-import styles from '../../styles/blog.module.scss'
+import styles from '../../styles/blog.module.scss';
+import { GetServerSideProps } from 'next';
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
   useEffect(() => {
-    console.log(props.articles);
-    console.log(Cookies.get());
+    console.log(props);
   }, [])
+
   return <>
     <Layout title="Maxwell Blog">
       <section className={`${styles.blog}`}>
@@ -61,7 +62,9 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
+  const res = await fetch('http://localhost:4000/api/articles', {
+    credentials: 'include',
+  });
   const articles = await res.json();
 
   return {
@@ -69,5 +72,17 @@ export const getStaticProps = async () => {
     revalidate: 1
   }
 }
+
+/* export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await fetch('http://localhost:4000/api/articles', { credentials: 'include' });
+  const articles = await res.json();
+
+  return {
+    props: {
+      articles: articles,
+      cookies: context.req.cookies,
+    }
+  }
+} */
 
 export default Articles

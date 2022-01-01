@@ -1,10 +1,13 @@
 import type { NextPage } from 'next'
-import { useState } from 'react';
-import { Form, Button, Modal } from 'react-bootstrap'
+import { useState, useEffect } from 'react';
+import { Form, Button, Modal, FloatingLabel, Collapse } from 'react-bootstrap'
 import Layout from '../../components/Layout'
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
 import Router from 'next/router'
+import ReactMarkdown from "react-markdown"
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import useAuth from '../../hooks/useAuth'
 
 interface BlogPost {
   title: string,
@@ -16,9 +19,12 @@ interface BlogPost {
 const CreatePost: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(true);
+  const [bodyText, setBodyText] = useState('');
   const [fileTooLarge, setFileTooLarge] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
+  const [currentUser, currentUserRole] = useAuth();
+
   const onSubmit = async (data: BlogPost) => {
     try{
       setLoading(true);
@@ -28,7 +34,7 @@ const CreatePost: NextPage = () => {
         setLoading(false);
         return console.log('File is too large');
       } else {
-        const formData = new FormData;
+        const formData = new FormData
         formData.append('image', data.image[0]);
         formData.append('title', data.title);
         formData.append('body', data.body);
@@ -51,16 +57,19 @@ const CreatePost: NextPage = () => {
 
   return <>
     <Layout title="Create Post - Maxwell Yu">
-      <div className="mx-5 my-3">
+      <div className="mx-2 my-3">
         <h1 className='text-center m-4'>Create a post</h1>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className='mb-3' controlId='title'>
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              isInvalid={errors.title}
-              disabled={loading}
-              type='text'
-              {...register("title", { max: 150, required: true })}/>
+            <FloatingLabel label='Title' className='text-secondary'>
+              <Form.Control
+                isInvalid={errors.title}
+                disabled={loading}
+                placeholder=''
+                type='text'
+                {...register("title", { max: 150, required: true })}
+              />
+            </FloatingLabel>
             {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
           </Form.Group>
 
@@ -77,34 +86,50 @@ const CreatePost: NextPage = () => {
           </Form.Group>
 
           <Form.Group className='mb-3' controlId='body'>
-            <Form.Label>Body - Markdown Syntax</Form.Label>
+            <Form.Label className='me-2'>Body</Form.Label>
+            <small className='text-secondary'>Enter twice for linebreak | **bold** | *italic* | - list </small>
             <Form.Control
               isInvalid={errors.content}
               disabled={loading}
               as='textarea'
               rows={5}
               placeholder='Markdown Syntax Applicable'
-              {...register("body", { required: true })} 
+              {...register("body", { required: true })}
+              onChange={(e) => setBodyText(e.target.value)}
             />
             {errors.content && <Form.Text className='text-danger'>This field is required</Form.Text>}
+          </Form.Group>
+          
+          {/* Text Preview */}
+          <Form.Group className='my-3'>
+            {open && <BsFillEyeFill onClick={() => setOpen(!open)}/>}
+            {!open && <BsFillEyeSlashFill onClick={() => setOpen(!open)}/>}
+            <Form.Label className='ms-2' onClick={() => setOpen(!open)}>Preview</Form.Label>
+            <Collapse in={open} dimension='height'>
+              <div className={`${bodyText ? 'border border-secondary rounded px-2' : ''}`}>
+                <ReactMarkdown>{`${bodyText}`}</ReactMarkdown>
+              </div>
+            </Collapse>
           </Form.Group>
 
           <Button variant="dark" type='submit'>
             {loading ? 'Loading...' : 'Submit'}
           </Button>
           <Link href="/blog">
-          <Button variant="" type='button'>
-            Back
-          </Button></Link>
+            <Button variant="" type='button'>
+              Back
+            </Button>
+          </Link>
         </Form>
 
+        {/* Modal to show on successful submit */}
         <Modal show={show} centered>
           <Modal.Header closeButton>
             <Modal.Title>Post Created!</Modal.Title>
           </Modal.Header>
           <Modal.Body>Post created successfully. You will be redirected soon...</Modal.Body>
           <Modal.Footer>
-            <Button variant='dark' onClick={() => setShow(false)}>Got it!</Button>
+            <Button variant='dark' onClick={() => Router.push('/blog')}>Got it!</Button>
           </Modal.Footer>
         </Modal>
       </div>

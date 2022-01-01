@@ -1,11 +1,12 @@
 import Layout from "../components/Layout";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NextPage } from "next";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, FloatingLabel } from "react-bootstrap";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import router from "next/router";
 import cookie from 'js-cookie'
+import AuthContext from "../context/authContext";
 
 interface LoginUser {
   username: String,
@@ -13,6 +14,7 @@ interface LoginUser {
 }
 
 const Login: NextPage = () => {
+  const authCtx = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [failure, setFailure] = useState(''); // Empty string = not failing
@@ -35,6 +37,7 @@ const Login: NextPage = () => {
       setShow(true);
       console.log('Set-Cookie: token=' + result.session)
       cookie.set('token', result.session);
+      authCtx.onLogin();
       setTimeout(() => router.push('/blog'), 1000);
       setTimeout(() => setShow(false), 1000);
     }

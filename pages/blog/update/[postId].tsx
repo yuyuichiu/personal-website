@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react';
-import { Form, Button, Modal } from 'react-bootstrap'
+import { Form, Button, Modal, Collapse } from 'react-bootstrap'
 import Layout from '../../../components/Layout'
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import ReactMarkdown from "react-markdown"
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 
 interface BlogPost {
   title: string,
@@ -15,6 +17,8 @@ interface BlogPost {
 const UpdatePost: NextPage<BlogPost> = (props) => {
   const [show, setShow] = useState(false);
   const [ready, setReady] = useState(false);
+  const [bodyText, setBodyText] = useState('');
+  const [open, setOpen] = useState(true);
   const router = useRouter();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
@@ -25,6 +29,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
       if(router.isReady) {
         const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`);
         const data = await res.json();
+        setBodyText(data.body);
         setValue('title', data.title);
         setValue('body', data.body);
         setReady(true);
@@ -47,6 +52,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
         .then((res) => {
           setShow(true);
           setTimeout(() => router.push(`/blog/posts/${router.query.postId}`), 1000);
+          setTimeout(() => setShow(false), 1000)
         })
         .catch((error) => console.log(error))
     }
@@ -64,8 +70,25 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
 
         <Form.Group className='mb-3' controlId='body'>
           <Form.Label>Body</Form.Label>
-          <Form.Control disabled={!ready} isInvalid={errors.title} as='textarea' rows={10} {...register("body", { required: true })}/>
+          <Form.Control 
+            disabled={!ready}
+            isInvalid={errors.title}
+            as='textarea' rows={6}
+            {...register("body", { required: true, onChange: (e) => setBodyText(e.target.value) })}
+          />
           {errors.title && <Form.Text className='text-danger'>This field is required</Form.Text>}
+        </Form.Group>
+
+        {/* Text Preview */}
+        <Form.Group className='my-3'>
+          {open && <BsFillEyeFill onClick={() => setOpen(!open)}/>}
+          {!open && <BsFillEyeSlashFill onClick={() => setOpen(!open)}/>}
+          <Form.Label className='ms-2' onClick={() => setOpen(!open)}>Preview</Form.Label>
+          <Collapse in={open} dimension='height'>
+            <div className={`${bodyText ? 'border border-secondary rounded px-2' : ''}`}>
+              <ReactMarkdown>{`${bodyText}`}</ReactMarkdown>
+            </div>
+          </Collapse>
         </Form.Group>
 
         <Button variant="dark" type='submit'>
@@ -83,9 +106,6 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
           <Modal.Title>Post Updated!</Modal.Title>
         </Modal.Header>
         <Modal.Body>Post updated successfully. You will be redirected soon...</Modal.Body>
-        <Modal.Footer>
-          <Button variant='dark' onClick={() => setShow(false)}>Got it!</Button>
-        </Modal.Footer>
       </Modal>
     </Layout>
   </>

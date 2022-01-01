@@ -1,43 +1,24 @@
 import Link from "next/link";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BsPerson, BsFillPersonFill } from "react-icons/bs";
-import Cookies from "js-cookie";
-import router from "next/router";
 import { Button } from "react-bootstrap";
+import AuthContext from "../context/authContext";
 
 const LoginStatusBar: React.FC = () => {
-  const [user, setUser] = useState<string>("");
-
-  useEffect(() => {
-    fetch(`http://localhost:4000/api/users/login/${Cookies.get("token")}`, {
-      method: 'POST',
-      credentials: "include",
-    })
-      .then((data) => data.json())
-      .then((res) => {
-        console.log(res);
-        setUser(res.session.user.username || "");
-      })
-      .catch((err) => setUser(""));
-  }, [user]);
-
-  const logoutHandler = () => {
-    Cookies.remove("token");
-    Cookies.remove("connect.sid");
-    setUser('');
-  };
+  const authCtx = useContext(AuthContext);
+  const logoutHandler = () => authCtx.onLogout();;
 
   return (
     <>
-      {user !== '' && 
+      {authCtx.isAuthenticated && 
         <div className="d-flex align-items-center">
           <BsFillPersonFill size={20} />
-          <small className="mx-1">{user}</small>
+          <small className="mx-1">{authCtx.username}</small>
           <small className="text-secondary" role='button' onClick={logoutHandler}>(Logout)</small>
         </div>
       }
 
-      {user === '' && 
+      {!authCtx.isAuthenticated && 
         <Link href="/login" passHref>
           <div className="d-flex align-items-center" style={{cursor: 'pointer'}}>
             <BsPerson size={20} />

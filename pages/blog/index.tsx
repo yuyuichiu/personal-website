@@ -1,17 +1,14 @@
 import type { NextPage } from 'next'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Layout from '../../components/Layout'
 import { ListGroup, Button } from 'react-bootstrap'
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 import { BsArrowUpCircle, BsSearch } from "react-icons/bs";
 import styles from '../../styles/blog.module.scss';
-import { GetServerSideProps } from 'next';
+import AuthContext from '../../context/authContext';
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
-  useEffect(() => {
-    console.log(props);
-  }, [])
+  const authCtx = useContext(AuthContext);
 
   return <>
     <Layout title="Maxwell Blog">

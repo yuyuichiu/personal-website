@@ -15,7 +15,8 @@ const Home: NextPage = () => {
             <aside className={`${styles.triangle}`}></aside>
             <img src={ProfilePic.src} className={`${styles.profilePicture}`}/>
             <h1>Maxwell Yu</h1>
-            <p>Web Developer. Builds your dream project. Evolves with the newest technology.</p>
+            <p className='pb-0 mb-0'>Web Developer</p>
+            <p className='pb-0 mb-0'>Builds your dream project. Evolves with modern technology.</p>
             <ul>
               <Link href="#" passHref>
                 <li>About Me</li>

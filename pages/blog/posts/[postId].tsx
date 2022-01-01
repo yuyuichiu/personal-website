@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { NextPage } from "next"
 import Layout from "../../../components/Layout"
 import ReactMarkdown from "react-markdown"
 import Link from "next/link"
 import styles from '../../../styles/blogpost.module.scss'
-import { BsFillHouseDoorFill, BsFillPencilFill, BsFillTrashFill, BsTrashFill } from 'react-icons/bs'
-import { Modal, Button } from "react-bootstrap";
+import { BsFillHouseDoorFill, BsFillPencilFill, BsTrashFill } from 'react-icons/bs'
+import { Modal, Button, Toast } from "react-bootstrap";
 import remarkGfm from 'remark-gfm'
 import router from 'next/router'
+import AuthContext from '../../../context/authContext'
 
 interface DeleteWidget {
   show: boolean,
@@ -15,8 +16,8 @@ interface DeleteWidget {
 }
 
 const DeleteWidget: React.FC<DeleteWidget> = (props) => {
-  return <Modal show={props.show} closeButton>
-    <Modal.Header closeButton>
+  return <Modal show={props.show} centered>
+    <Modal.Header>
       <Modal.Title>Confirm Delete</Modal.Title>
     </Modal.Header>
     <Modal.Body>Are you sure you want to delete the post??</Modal.Body>
@@ -38,6 +39,7 @@ const componentConfig = {
 
 const Post: NextPage<any> = (props) => {
   const [askDelete , setAskDelete] = useState(false);
+  const authCtx = useContext(AuthContext);
 
   const onDeleteRequest = () => { setAskDelete(true); }
   const deleteHandler = (deleteOption: boolean) => {
@@ -49,11 +51,17 @@ const Post: NextPage<any> = (props) => {
         headers: { 'Content-Type' : "application/json" },
         body: JSON.stringify({"img" : props.post.preview_image})
       })
-        .then((res) => {
-          console.log('deleted.')
-          setTimeout(() => router.back(), 1000);
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.ok) {
+            console.log('deleted.')
+            setTimeout(() => router.back(), 1000);
+          } else {
+            console.log('NOT deleted.')
+            router.push('/blog');
+          }
         })
-        .catch((err) => console.log(err.message))
+        .catch((err) => router.push('/blog'))
     }
   }
 
@@ -78,15 +86,15 @@ const Post: NextPage<any> = (props) => {
         </div>
         <div className="col-sm-3">
           <div className={`${styles.back}`}>
-            <Link href='/blog'>
+            <Link href='/blog'><div className='m-0 p-0'>
               <BsFillHouseDoorFill size={30}/>
-            </Link>
-            <Link href={`/blog/update/${props.post._id}`}>
+            </div></Link>
+            {authCtx.role === 0 && <Link href={`/blog/update/${props.post._id}`}>
               <BsFillPencilFill size={30}/>
-            </Link>
-            <button onClick={() => onDeleteRequest()} className={styles.delete}>
+            </Link>}
+            {authCtx.role === 0 && <button onClick={() => onDeleteRequest()} className={styles.delete}>
               <BsTrashFill size={30} style={{ color: '#CB0101' }}/>
-            </button>
+            </button>}
           </div>
           <div className={`${styles.ad}`}>
           </div>

@@ -15,12 +15,14 @@ interface NewUser {
 const Register: NextPage = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [userOverlap, setUserOverlap] = useState(false);
   const [pwNotMatch, setPwNotMatch] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit: SubmitHandler<NewUser> = (data) => {
     setLoading(true);
     setPwNotMatch(false);
+    setUserOverlap(false);
 
     if(data.password !== data.confirmPassword) {
       setLoading(false);
@@ -36,11 +38,12 @@ const Register: NextPage = () => {
         password: data.password
       })
     }).then((data) => {
-      console.log('Registration Successful');
-      setShow(true);
+      if (data.ok) {
+        setShow(true);
+        setTimeout(() => router.push('/login'), 1000);
+        setTimeout(() => setShow(false), 1000);
+      } else { setUserOverlap(true); }
       setLoading(false);
-      setTimeout(() => router.push('/login'), 1000);
-      setTimeout(() => setShow(false), 1000);
     }).catch((error) => {
       console.log(error.message);
       setLoading(false);
@@ -91,6 +94,7 @@ const Register: NextPage = () => {
 
         <Button variant="dark" type="submit">Register!</Button>
         <Link href='/login'><u className="mx-2 underline">Go back</u></Link>
+        {userOverlap && <p className='text-danger'>Username has already been taken.</p>}
       </Form>
 
       <Modal show={show} centered>

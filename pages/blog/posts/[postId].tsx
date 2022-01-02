@@ -45,23 +45,23 @@ const Post: NextPage<any> = (props) => {
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
     if(deleteOption && router.isReady) {
-      fetch(`http://localhost:4000/api/articles/${props.post._id}`, {
+      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: { 'Content-Type' : "application/json" },
         body: JSON.stringify({"img" : props.post.preview_image})
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.ok) {
-            console.log('deleted.')
-            setTimeout(() => router.back(), 1000);
-          } else {
-            console.log('NOT deleted.')
-            router.push('/blog');
-          }
+        .then((res) => {
+          if(res.ok) { return res.json() }
+          else throw 'Unauthenticated'
         })
-        .catch((err) => router.push('/blog'))
+        .then((data) => {
+          console.log('deleted.')
+          setTimeout(() => router.push('/blog'), 1000);
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 
@@ -71,7 +71,7 @@ const Post: NextPage<any> = (props) => {
       <div className='row'>
         <div className='col-12'>
           <h1 className='text-center mb-1 mt-3 fs-2'>{props.post.title}</h1>
-          <p className='text-center'>Created: {props.post.created_at.split("T")[0]}, by {props.post.author_name || 'Maxwell Yu (temp)'}</p>
+          <p className='text-center'>Created: {props.post.created_at.split("T")[0]}, by {props.post.author === 'yuyuichiu' ? 'Maxwell Yu' : props.post.author || 'Unknown'}</p>
           <hr />
         </div>
         <div className="col-sm-9">
@@ -86,14 +86,16 @@ const Post: NextPage<any> = (props) => {
         </div>
         <div className="col-sm-3">
           <div className={`${styles.back}`}>
-            <Link href='/blog'><div className='m-0 p-0'>
-              <BsFillHouseDoorFill size={30}/>
-            </div></Link>
-            {authCtx.role === 0 && <Link href={`/blog/update/${props.post._id}`}>
-              <BsFillPencilFill size={30}/>
+            <Link href='/blog'>
+              <span className='m-0'><BsFillHouseDoorFill size={30}/></span>
+            </Link>
+            {(authCtx.role === 0 || authCtx.username === props.post.author) && 
+            <Link href={`/blog/update/${props.post._id}`}>
+              <span className='m-0'><BsFillPencilFill size={30}/></span>
             </Link>}
-            {authCtx.role === 0 && <button onClick={() => onDeleteRequest()} className={styles.delete}>
-              <BsTrashFill size={30} style={{ color: '#CB0101' }}/>
+            {(authCtx.role === 0 || authCtx.username === props.post.author) && 
+            <button onClick={() => onDeleteRequest()} className={styles.delete}>
+              <span className='m-0'><BsTrashFill size={30} style={{ color: '#CB0101' }}/></span>
             </button>}
           </div>
           <div className={`${styles.ad}`}>

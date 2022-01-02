@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Form, Button, Modal, Collapse } from 'react-bootstrap'
 import Layout from '../../../components/Layout'
 import { useForm } from "react-hook-form";
@@ -7,14 +7,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ReactMarkdown from "react-markdown"
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import AuthContext from '../../../context/authContext';
 
 interface BlogPost {
-  title: string,
-  body: string,
-  tags: string[]
+  title: String,
+  body: String,
+  tags: String[],
+  author: String
 }
 
 const UpdatePost: NextPage<BlogPost> = (props) => {
+  const authCtx = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [ready, setReady] = useState(false);
   const [bodyText, setBodyText] = useState('');
@@ -27,8 +30,9 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
     // Function to initialize form values (because of the nature of edit)
     async function getPostData() {
       if(router.isReady) {
-        const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`);
+        const res = await fetch(`http://localhost:4000/api/articles/${router.query.postId}`);
         const data = await res.json();
+        if (!authCtx.isAuthenticated || data.author !== authCtx.username) { router.back() }
         setBodyText(data.body);
         setValue('title', data.title);
         setValue('body', data.body);
@@ -44,7 +48,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
 
   const onSubmit = (data: { title: string, body: string }) => {
     if(ready){
-      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`, {
+      fetch(`http://localhost:4000/api/articles/${router.query.postId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title: data.title, body: data.body })

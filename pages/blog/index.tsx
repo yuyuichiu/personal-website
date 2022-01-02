@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import Layout from '../../components/Layout'
 import { ListGroup, Button } from 'react-bootstrap'
 import Link from 'next/link';
@@ -9,6 +9,7 @@ import AuthContext from '../../context/authContext';
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
   const authCtx = useContext(AuthContext);
+  const [query, setQuery] = useState('');
 
   return <>
     <Layout title="Maxwell Blog">
@@ -16,7 +17,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
         <nav className={`${styles.toolbar}`}>
           <h2 className='m-2'>Blog</h2>
           <div className={`${styles.search}`}>
-            <div className={`${styles.left}`}>
+            <div className={`${styles.left} d-none d-md-flex`}>
               <div className={`${styles.tag}`}>Experiment</div>
               <div className={`${styles.tag} ${styles.active}`}>Experiment 2</div>
             </div>
@@ -26,14 +27,14 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
               </Link>
               <div>
                 <BsSearch size={28}/>
-                <input type='text' />
+                <input type='text' onChange={(e) => setQuery(e.target.value)}/>
               </div>
             </div>
           </div>
         </nav>
 
         <ListGroup className={`${styles.posts}`}>
-          {props.articles.map((article: any) => {
+          {props.articles.filter((x: any) => x.title.toLowerCase().includes(query)).map((article: any) => {
             return <Link key={article._id} href={`/blog/posts/${article._id}`} passHref>
               <ListGroup.Item className={`${styles.post}`} action>
                 {article.preview_image && <img src={article.preview_image}/>}
@@ -59,7 +60,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:4000/api/articles', {
+  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
     credentials: 'include',
   });
   const articles = await res.json();
@@ -69,17 +70,5 @@ export const getStaticProps = async () => {
     revalidate: 1
   }
 }
-
-/* export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch('http://localhost:4000/api/articles', { credentials: 'include' });
-  const articles = await res.json();
-
-  return {
-    props: {
-      articles: articles,
-      cookies: context.req.cookies,
-    }
-  }
-} */
 
 export default Articles

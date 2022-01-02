@@ -1,10 +1,11 @@
 import Layout from "../components/Layout";
 import type { NextPage } from "next";
-import { useState } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { Form, Button, Modal } from "react-bootstrap";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import router from 'next/router';
+import AuthContext from "../context/authContext";
 
 interface NewUser {
   username: String,
@@ -13,11 +14,17 @@ interface NewUser {
 }
 
 const Register: NextPage = () => {
+  const authCtx = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userOverlap, setUserOverlap] = useState(false);
   const [pwNotMatch, setPwNotMatch] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
+
+  useEffect(() => {
+    if(authCtx.isAuthenticated) { router.push('/blog') }
+    document.getElementById('username')?.focus();
+  }, [])
 
   const onSubmit: SubmitHandler<NewUser> = (data) => {
     setLoading(true);
@@ -30,7 +37,7 @@ const Register: NextPage = () => {
       return console.log(errors);
     }
 
-    fetch('http://localhost:4000/api/users/register', {
+    fetch('https://maxwellyu-blog.herokuapp.com/api/users/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -76,7 +83,7 @@ const Register: NextPage = () => {
             {...register('password', { required: true, minLength: 6 })}
           />
           <Form.Text className="text-muted">
-              Your password will be masked confidentially with hash function.
+              Your password will be masked confidentially with SHA-256 hash function.
           </Form.Text>
           {errors.password && <p className='text-danger'>Please enter a password with at least 6 characters</p>}
         </Form.Group>

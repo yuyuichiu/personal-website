@@ -4,6 +4,7 @@ import { BsPerson, BsFillPersonFill } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 import AuthContext from "../context/authContext";
 
+
 const LoginStatusBar: React.FC = () => {
   const authCtx = useContext(AuthContext);
   const logoutHandler = () => authCtx.onLogout();;
@@ -14,7 +15,7 @@ const LoginStatusBar: React.FC = () => {
         <div className="d-flex align-items-center">
           <BsFillPersonFill size={20} />
           <small className="mx-1">{authCtx.username}</small>
-          <small className="text-secondary" role='button' onClick={logoutHandler}>(Logout)</small>
+          <small className="text-secondary d-none d-md-block" role='button' onClick={logoutHandler}>(Logout)</small>
         </div>
       }
 

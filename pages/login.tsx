@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NextPage } from "next";
 import { Form, Button, Modal, FloatingLabel } from "react-bootstrap";
 import Link from "next/link";
@@ -20,9 +20,14 @@ const Login: NextPage = () => {
   const [failure, setFailure] = useState(''); // Empty string = not failing
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  useEffect(() => {
+    // Extracting ref with react form hook is too annoying.
+    document.getElementById('username')?.focus();
+  }, [])
+
   const onSubmit: SubmitHandler<LoginUser> = async (data) => {
     setLoading(true);
-    const response = await fetch('http://localhost:4000/api/users/login', {
+    const response = await fetch('https://maxwellyu-blog.herokuapp.com/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -38,7 +43,7 @@ const Login: NextPage = () => {
       console.log('Set-Cookie: token=' + result.session)
       cookie.set('token', result.session);
       authCtx.onLogin();
-      setTimeout(() => router.push('/blog'), 1000);
+      setTimeout(() => router.back(), 1000);
       setTimeout(() => setShow(false), 1000);
     }
 

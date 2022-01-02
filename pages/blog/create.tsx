@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Form, Button, Modal, FloatingLabel, Collapse } from 'react-bootstrap'
 import Layout from '../../components/Layout'
 import { useForm } from "react-hook-form";
@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Router from 'next/router'
 import ReactMarkdown from "react-markdown"
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
-import useAuth from '../../hooks/useAuth'
+import AuthContext from '../../context/authContext';
 
 interface BlogPost {
   title: string,
@@ -17,15 +17,19 @@ interface BlogPost {
 }
 
 const CreatePost: NextPage = () => {
+  const authCtx = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(true);
   const [bodyText, setBodyText] = useState('');
   const [fileTooLarge, setFileTooLarge] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [currentUser, currentUserRole] = useAuth();
 
-  const onSubmit = async (data: BlogPost) => {
+  useEffect(() => {
+    if(!authCtx.isAuthenticated) { Router.push('/login') }
+  }, [authCtx])
+
+  const onSubmit = (data: BlogPost) => {
     try{
       setLoading(true);
       setFileTooLarge(false);
@@ -38,20 +42,23 @@ const CreatePost: NextPage = () => {
         formData.append('image', data.image[0]);
         formData.append('title', data.title);
         formData.append('body', data.body);
+        formData.append('author', authCtx.username!);
         formData.append('tags', JSON.stringify(['tag01']));
   
-        const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+        fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
           method: 'POST',
           body: formData
-        }).then(() => {
-          setShow(true);
-          setTimeout(() => Router.push('/blog'), 2000);
+        }).then((res) => {
+          if (res.ok) {
+            setShow(true);
+            setTimeout(() => Router.push('/blog'), 2000);
+          } else { console.log('Request ended with an error') }
+          setLoading(false);
         })
       }
     } catch(err) {
-      console.log(err);
       setLoading(false);
-      console.log('Request ended with an error')
+      console.log(err);
     }
   }
 

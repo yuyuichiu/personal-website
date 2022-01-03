@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Authentication Fn --> to extract session data based on Cookie
   async function auth() {
-    const authUrl = await `http://localhost:4000/api/users/auth/${Cookies.get('token')}`;
+    const authUrl = await `https://maxwellyu-blog.herokuapp.com/api/users/auth/${Cookies.get('token')}`;
     const res = await fetch(authUrl, { method: 'POST', credentials: 'include' })
     if(res.ok){
       const data = await res.json();
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // onLogin and onLogout will be triggered by children on the right time
     onLogin: () => auth(),
     onLogout: () => {
-      const url = `http://localhost:4000/api/users/auth/${Cookies.get('token')}`;
+      const url = `https://maxwellyu-blog.herokuapp.com/api/users/auth/${Cookies.get('token')}`;
       fetch(url, { method: 'DELETE', credentials: 'include' })
         .then(() => {
           Cookies.remove("token");

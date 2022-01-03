@@ -46,7 +46,7 @@ const Post: NextPage<any> = (props) => {
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
     if(deleteOption && router.isReady) {
-      fetch(`http://localhost:4000/api/articles/${props.post._id}`, {
+      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {

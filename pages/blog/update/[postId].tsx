@@ -31,7 +31,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
     // Function to initialize form values (because of the nature of edit)
     async function getPostData() {
       if(router.isReady) {
-        const res = await fetch(`http://localhost:4000/api/articles/${router.query.postId}`);
+        const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`);
         const data = await res.json();
         if (!authCtx.isAuthenticated || data.author !== authCtx.username) { router.back() }
         setBodyText(data.body);
@@ -49,7 +49,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
 
   const onSubmit = (data: { title: string, body: string }) => {
     if(ready){
-      fetch(`http://localhost:4000/api/articles/${router.query.postId}`, {
+      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

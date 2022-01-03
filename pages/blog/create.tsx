@@ -46,7 +46,7 @@ const CreatePost: NextPage = () => {
         formData.append('author', authCtx.username!);
         formData.append('tags', JSON.stringify(['tag01']));
   
-        fetch('http://localhost:4000/api/articles', {
+        fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
           method: 'POST',
           headers: { 'authentication': `${cookie.get('token')}` },
           body: formData

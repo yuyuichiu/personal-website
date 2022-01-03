@@ -27,7 +27,7 @@ const Login: NextPage = () => {
 
   const onSubmit: SubmitHandler<LoginUser> = async (data) => {
     setLoading(true);
-    const response = await fetch('https://maxwellyu-blog.herokuapp.com/api/users/login', {
+    const response = await fetch('http://localhost:4000/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

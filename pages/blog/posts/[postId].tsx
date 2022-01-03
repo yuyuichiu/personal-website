@@ -8,6 +8,7 @@ import { BsFillHouseDoorFill, BsFillPencilFill, BsTrashFill } from 'react-icons/
 import { Modal, Button, Toast } from "react-bootstrap";
 import remarkGfm from 'remark-gfm'
 import router from 'next/router'
+import Cookies from 'js-cookie'
 import AuthContext from '../../../context/authContext'
 
 interface DeleteWidget {
@@ -45,10 +46,13 @@ const Post: NextPage<any> = (props) => {
   const deleteHandler = (deleteOption: boolean) => {
     setAskDelete(false);
     if(deleteOption && router.isReady) {
-      fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${props.post._id}`, {
+      fetch(`http://localhost:4000/api/articles/${props.post._id}`, {
         method: 'DELETE',
         credentials: 'include',
-        headers: { 'Content-Type' : "application/json" },
+        headers: {
+          'Content-Type' : "application/json",
+          'authentication': `${Cookies.get('token')}`
+       },
         body: JSON.stringify({"img" : props.post.preview_image})
       })
         .then((res) => {

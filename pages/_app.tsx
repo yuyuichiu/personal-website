@@ -16,10 +16,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Authentication Fn --> to extract session data based on Cookie
   async function auth() {
-    const authUrl = await `https://maxwellyu-blog.herokuapp.com/api/users/auth/${Cookies.get('token')}`;
+    const authUrl = await `http://localhost:4000/api/users/auth/${Cookies.get('token')}`;
     const res = await fetch(authUrl, { method: 'POST', credentials: 'include' })
     if(res.ok){
       const data = await res.json();
+      console.log('data', data)
       setIsAuth(true);
       setUsername(data.session.user.username);
       setRole(data.session.user.role);
@@ -34,11 +35,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     // onLogin and onLogout will be triggered by children on the right time
     onLogin: () => auth(),
     onLogout: () => {
-      Cookies.remove("token");
-      Cookies.remove("connect.sid");
-      setIsAuth(false);
-      setUsername(null);
-      setRole(1);
+      const url = `http://localhost:4000/api/users/auth/${Cookies.get('token')}`;
+      fetch(url, { method: 'DELETE', credentials: 'include' })
+        .then(() => {
+          Cookies.remove("token");
+          setIsAuth(false);
+          setUsername(null);
+          setRole(1);
+        })
     },
   }
 

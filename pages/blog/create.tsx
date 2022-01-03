@@ -8,6 +8,7 @@ import Router from 'next/router'
 import ReactMarkdown from "react-markdown"
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import AuthContext from '../../context/authContext';
+import cookie from 'js-cookie'
 
 interface BlogPost {
   title: string,
@@ -45,8 +46,9 @@ const CreatePost: NextPage = () => {
         formData.append('author', authCtx.username!);
         formData.append('tags', JSON.stringify(['tag01']));
   
-        fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
+        fetch('http://localhost:4000/api/articles', {
           method: 'POST',
+          headers: { 'authentication': `${cookie.get('token')}` },
           body: formData
         }).then((res) => {
           if (res.ok) {

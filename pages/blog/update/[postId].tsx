@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import ReactMarkdown from "react-markdown"
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import AuthContext from '../../../context/authContext';
+import Cookies from 'js-cookie';
 
 interface BlogPost {
   title: String,
@@ -50,7 +51,10 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
     if(ready){
       fetch(`http://localhost:4000/api/articles/${router.query.postId}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'authentication': `${Cookies.get('token')}`
+          },
           body: JSON.stringify({ title: data.title, body: data.body })
         })
         .then((res) => {

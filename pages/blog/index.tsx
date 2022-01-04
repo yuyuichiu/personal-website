@@ -59,15 +59,14 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
   </>
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles', {
     credentials: 'include',
   });
   const articles = await res.json();
 
   return {
-    props: { articles },
-    revalidate: 1
+    props: { articles }
   }
 }
 

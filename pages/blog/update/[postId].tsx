@@ -33,7 +33,8 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
       if(router.isReady) {
         const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${router.query.postId}`);
         const data = await res.json();
-        if (!authCtx.isAuthenticated || data.author !== authCtx.username) { router.back() }
+        const canEdit = authCtx.isAuthenticated && (data.author === authCtx.username || authCtx.role === 0)
+        if (!canEdit) { router.back() }
         setBodyText(data.body);
         setValue('title', data.title);
         setValue('body', data.body);

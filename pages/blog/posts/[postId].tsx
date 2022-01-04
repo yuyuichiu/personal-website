@@ -111,7 +111,7 @@ const Post: NextPage<any> = (props) => {
   </>
 }
 
-export const getStaticPaths = async () => {
+/* export const getStaticPaths = async () => {
   // Get array of possible post paths to render
   const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
   const posts = await res.json();
@@ -122,19 +122,18 @@ export const getStaticPaths = async () => {
     paths: allPaths,
     fallback: false
   }
-}
+} */
 
-export const getStaticProps = async (context: any)  =>{
+export const getServerSideProps = async (context: any)  =>{
   try {
     const res = await fetch(`https://maxwellyu-blog.herokuapp.com/api/articles/${context.params.postId}`);
     const post = await res.json();
     return {
-      props: { post: post },
-      revalidate: 1
+      props: { post: post }
     }
   } catch {
     return {
-      props: { error: true }
+      props: { notFound: true }
     }
   }
 }

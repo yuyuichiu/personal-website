@@ -18,8 +18,9 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
           <h2 className='m-2'>Blog</h2>
           <div className={`${styles.search}`}>
             <div className={`${styles.left} d-none d-md-flex`}>
-              <div className={`${styles.tag}`}>Experiment</div>
-              <div className={`${styles.tag} ${styles.active}`}>Experiment 2</div>
+              {/* Tags - to do later */}
+              {/* <div className={`${styles.tag}`}>Experiment</div>
+              <div className={`${styles.tag} ${styles.active}`}>Experiment 2</div> */}
             </div>
             <div className={`${styles.right}`}>
               <Link href='/blog/create' passHref>
@@ -27,14 +28,14 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
               </Link>
               <div>
                 <BsSearch size={28}/>
-                <input type='text' onChange={(e) => setQuery(e.target.value)}/>
+                <input type='text' onChange={(e) => setQuery(e.target.value)} placeholder='By title / content'/>
               </div>
             </div>
           </div>
         </nav>
 
         <ListGroup className={`${styles.posts}`}>
-          {props.articles.filter((x: any) => x.title.toLowerCase().includes(query)).map((article: any) => {
+          {props.articles.filter((x: any) => x.title.toLowerCase().includes(query.toLowerCase()) || x.body.toLowerCase().includes(query.toLowerCase())).map((article: any) => {
             return <Link key={article._id} href={`/blog/posts/${article._id}`} passHref>
               <ListGroup.Item className={`${styles.post}`} action>
                 {article.preview_image && <img src={article.preview_image}/>}
@@ -43,7 +44,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
                   <div className={`${styles.subset}`}>
                     <small>Created at: {article.created_at.split('T')[0]}</small>
                     <p>
-                      {`${article.body.match(/[A-Za-z0-9,.?! ]+/)[0].substr(0,120) || ""}`}
+                      {`${article.body.split('\n\n')[0] || ""}`}
                     </p>
                   </div>
                 </div>

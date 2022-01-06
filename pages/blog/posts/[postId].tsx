@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from 'react'
 import { NextPage } from "next"
 import Layout from "../../../components/Layout"
-import ReactMarkdown from "react-markdown"
 import Link from "next/link"
 import styles from '../../../styles/blogpost.module.scss'
 import { BsFillHouseDoorFill, BsFillPencilFill, BsTrashFill } from 'react-icons/bs'
 import { Modal, Button, Toast } from "react-bootstrap";
-import remarkGfm from 'remark-gfm'
 import router from 'next/router'
 import Cookies from 'js-cookie'
+import CustomMarkdown from '../../../components/CustomMarkdown'
 import AuthContext from '../../../context/authContext'
+
 
 interface DeleteWidget {
   show: boolean,
@@ -31,11 +31,6 @@ const DeleteWidget: React.FC<DeleteWidget> = (props) => {
       </Button>
     </Modal.Footer>
   </Modal>
-}
-
-const componentConfig = {
-  table: ({...props}) => <table className="table" {...props}></table>,
-  img: ({...props}) => <img style={{maxWidth: '300px'}} {...props} />,
 }
 
 const Post: NextPage<any> = (props) => {
@@ -84,9 +79,9 @@ const Post: NextPage<any> = (props) => {
             className={`${styles.blogImage}`}
             src={props.post.preview_image}
           />}
-          <ReactMarkdown className="mt-3" remarkPlugins={[remarkGfm]} components={componentConfig}>
+          <CustomMarkdown className="mt-3">
             {`${props.post.body}`}
-          </ReactMarkdown>
+          </CustomMarkdown>
         </div>
         <div className="col-sm-3">
           <div className={`${styles.back}`}>

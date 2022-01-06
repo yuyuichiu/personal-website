@@ -5,7 +5,7 @@ import Layout from '../../../components/Layout'
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import ReactMarkdown from "react-markdown"
+import CustomMarkdown from '../../../components/CustomMarkdown'
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import AuthContext from '../../../context/authContext';
 import Cookies from 'js-cookie';
@@ -95,7 +95,7 @@ const UpdatePost: NextPage<BlogPost> = (props) => {
           <Form.Label className='ms-2' onClick={() => setOpen(!open)}>Preview</Form.Label>
           <Collapse in={open} dimension='height'>
             <div className={`${bodyText ? 'border border-secondary rounded px-2' : ''}`}>
-              <ReactMarkdown>{`${bodyText}`}</ReactMarkdown>
+              <CustomMarkdown>{`${bodyText}`}</CustomMarkdown>
             </div>
           </Collapse>
         </Form.Group>

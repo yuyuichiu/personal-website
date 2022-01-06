@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import TestContext from '../context/testcontext'
 import Layout from "../components/Layout"
 import { NextPage } from "next"
+import Highlight from 'react-highlight'
 
 interface CtxInterface {
   msg: string,
@@ -42,6 +43,10 @@ const TestPage: NextPage = () => {
   return <TestContext.Provider value={testCtx}>
     <Layout title='page for testing purpose'>
       <MiddleComponent />
+      <Highlight innerHTML={true}>{'<p>Hello world</p>'}</Highlight>
+      <Highlight>
+        {`function foo() { return 'bar' }`}
+      </Highlight>
     </Layout>
   </TestContext.Provider>
 }

@@ -6,15 +6,19 @@ import Link from 'next/link';
 import { BsArrowUpCircle, BsSearch } from "react-icons/bs";
 import styles from '../../styles/blog.module.scss';
 import AuthContext from '../../context/authContext';
+import LoginStatusBar from '../../components/LoginStatusBar';
 
 const Articles : NextPage<{articles: any, image: any}> = (props) => {
   const authCtx = useContext(AuthContext);
   const [query, setQuery] = useState('');
 
   return <>
-    <Layout title="Maxwell Blog">
+    <Layout title="Blog">
+      <div className='w-100 d-flex justify-content-center m-2'>
+        <LoginStatusBar />
+      </div>
       <section className={`${styles.blog}`}>
-        <nav className={`${styles.toolbar}`}>
+        <div className={`${styles.toolbar}`}>
           <h2 className='m-2'>Blog</h2>
           <div className={`${styles.search}`}>
             <div className={`${styles.left} d-none d-md-flex`}>
@@ -24,15 +28,15 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
             </div>
             <div className={`${styles.right}`}>
               <Link href='/blog/create' passHref>
-                <div className='p-0 m-0 btn'><BsArrowUpCircle size={24}/></div>
+                <div className='p-0 m-0 btn' title='Create new post'><BsArrowUpCircle size={24}/></div>
               </Link>
-              <div>
-                <BsSearch size={28}/>
+              <div title='search'>
+                <BsSearch size={28} />
                 <input type='text' onChange={(e) => setQuery(e.target.value)} placeholder='By title / content'/>
               </div>
             </div>
           </div>
-        </nav>
+        </div>
 
         <ListGroup className={`${styles.posts}`}>
           {props.articles.filter((x: any) => x.title.toLowerCase().includes(query.toLowerCase()) || x.body.toLowerCase().includes(query.toLowerCase())).map((article: any) => {

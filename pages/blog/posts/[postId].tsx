@@ -1,14 +1,15 @@
-import { useState, useEffect, useContext } from 'react'
-import { NextPage } from "next"
-import Layout from "../../../components/Layout"
-import Link from "next/link"
+import { useState, useEffect, useContext } from 'react';
+import { NextPage } from "next";
+import Layout from "../../../components/Layout";
+import Link from "next/link";
 import styles from '../../../styles/blogpost.module.scss'
-import { BsFillHouseDoorFill, BsFillPencilFill, BsTrashFill } from 'react-icons/bs'
+import { BsFillHouseDoorFill, BsFillPencilFill, BsTrashFill } from 'react-icons/bs';
 import { Modal, Button, Toast } from "react-bootstrap";
-import router from 'next/router'
-import Cookies from 'js-cookie'
-import CustomMarkdown from '../../../components/CustomMarkdown'
-import AuthContext from '../../../context/authContext'
+import router from 'next/router';
+import Cookies from 'js-cookie';
+import CustomMarkdown from '../../../components/CustomMarkdown';
+import AuthContext from '../../../context/authContext';
+import LoginStatusBar from '../../../components/LoginStatusBar';
 
 
 interface DeleteWidget {
@@ -65,14 +66,19 @@ const Post: NextPage<any> = (props) => {
   }
 
   return <>
-    <Layout title={`${props.post.title} - Maxwell Blog`}>
+    <Layout title={`${props.post.title} - Dave Blog`}>
+      <div className="w-100 d-flex justify-content-center">
+        <LoginStatusBar />
+      </div>
+
       <DeleteWidget show={askDelete} onDelete={(d) => deleteHandler(d)}/>
       <div className='row'>
         <div className='col-12'>
           <h1 className='text-center mb-1 mt-3 fs-2'>{props.post.title}</h1>
-          <p className='text-center'>Created: {props.post.created_at.split("T")[0]}, by {props.post.author === 'yuyuichiu' ? 'Maxwell Yu' : props.post.author || 'Unknown'}</p>
+          <p className='text-center'>Created: {props.post.created_at.split("T")[0]}, by {props.post.author === 'yuyuichiu' ? 'Dave Yu' : props.post.author || 'Unknown'}</p>
           <hr />
         </div>
+
         <div className="col-sm-9">
           {props.post.preview_image && 
           <img 
@@ -83,6 +89,7 @@ const Post: NextPage<any> = (props) => {
             {`${props.post.body}`}
           </CustomMarkdown>
         </div>
+
         <div className="col-sm-3">
           <div className={`${styles.back}`}>
             <Link href='/blog'>
@@ -108,7 +115,7 @@ const Post: NextPage<any> = (props) => {
 
 /* export const getStaticPaths = async () => {
   // Get array of possible post paths to render
-  const res = await fetch('https://maxwellyu-blog.herokuapp.com/api/articles');
+  const res = await fetch('https://Daveyu-blog.herokuapp.com/api/articles');
   const posts = await res.json();
 
   const allPaths = posts.map( (p: {_id: string}) => { return { params: { postId: p._id } } } );

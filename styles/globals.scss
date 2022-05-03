@@ -7,6 +7,8 @@
 :root {
   --main-bg-color: #F7FFCE;
   --main-secondary-color: #F6FA84;
+  --text-secondary-color: #6e6e6e;
+  --brownish-color: #98956D;
 }
 
 @font-face {
@@ -14,16 +16,13 @@
   src: url('../public/assets/Inconsolata-VariableFont_wdth\,wght.ttf');
 }
 
-html,
 body {
   padding: 0;
-  height: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
   margin: 0;
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
   background-color: var(--main-bg-color);
+  scroll-behavior: smooth;
 }
 
 ::selection {
@@ -46,40 +45,35 @@ a:hover {
   color: black;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.navbar_main {
-  z-index: 10;
-  .left {
-    display: flex;
-    align-items: flex-end;
-
-    h1 {
-      font-size: 22px;
-      font-family: 'Inconsolata', 'Lato';
-      margin: 0;
-    }
+/* Buttons */
+.button {
+  background-color: #fff;
+  color: var(--brownish-color);
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border: 2px solid var(--brownish-color);
+  border-radius: 50px;
+  transition: 0.3s;
+  
+  &.inverse {
+  background-color: var(--brownish-color);
+  color: #fff;
   }
 
-  .right {
-    a {
-      color: #575757 !important;
-      font-size: 18px;
-      color: #313131;
-    }
+  &:hover {
+    background-color: var(--brownish-color);
+    color: #fff;
+  }
 
-    a:hover {
-      color: #000000 !important;
-      transform: scale(1.05);
-      transition: all 0.3s ease;
-    }
+  &.inverse:hover {
+    background-color: #fff;
+    color: var(--brownish-color);
   }
 }
 
+/* Loading screen */
 .loading {
-  z-index: 1000;
+  z-index: 10000;
 
   &.hidden {
     visibility: hidden;

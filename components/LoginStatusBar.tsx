@@ -14,8 +14,8 @@ const LoginStatusBar: React.FC = () => {
       {authCtx.isAuthenticated && 
         <div className="d-flex align-items-center">
           <BsFillPersonFill size={20} />
-          <small className="mx-1">{authCtx.username}</small>
-          <small className="text-secondary d-none d-md-block" role='button' onClick={logoutHandler}>(Logout)</small>
+          <span className="mx-1">{authCtx.username}</span>
+          <span className="text-secondary d-none d-md-block" role='button' onClick={logoutHandler}>(Logout)</span>
         </div>
       }
 
@@ -23,7 +23,7 @@ const LoginStatusBar: React.FC = () => {
         <Link href="/login" passHref>
           <div className="d-flex align-items-center" style={{cursor: 'pointer'}}>
             <BsPerson size={20} />
-            <small className="text-secondary ms-1">login</small>
+            <span className="text-secondary ms-1">login</span>
           </div>
         </Link>}
     </>

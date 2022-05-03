@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const res = await fetch(authUrl, { method: 'POST', credentials: 'include' })
     if(res.ok){
       const data = await res.json();
-      console.log('loggin in', data)
+      console.log('logging in', data)
       setIsAuth(true);
       setUsername(data.session.user.username);
       setRole(data.session.user.role);

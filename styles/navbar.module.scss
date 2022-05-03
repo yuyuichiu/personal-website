@@ -1,0 +1,42 @@
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #A09E85;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav a {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  margin: 0 1em;
+}
+
+.nav a::before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 3px;
+  left: -0.3em;
+  bottom: calc(-1em + 4.2px);
+  background-color: #FFFF9F;
+  transition: all 0.3s;
+}
+
+.nav a:hover {
+  color: #FFFF9F;
+}
+
+.nav a:hover::before {
+  width: calc(100% + 0.6em);
+}
+
+.offset {
+  height: 3em;
+  margin-bottom: 1em;
+}

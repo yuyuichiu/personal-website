@@ -13,7 +13,7 @@ const Intro: React.FC = () => {
         <p>Full stack web developer</p>
         <div className={`${styles.badge}`}>
           <Image
-            src={`/assets/js_icon.png`}
+            src={`/assets/js_icon.webp`}
             height={30}
             width={30}
             alt='js'
@@ -23,7 +23,7 @@ const Intro: React.FC = () => {
         
         <div className={`${styles.badge}`}>
           <Image
-            src={`/assets/react_icon.png`}
+            src={`/assets/react_icon.webp`}
             height={30}
             width={30}
             alt='react'
@@ -33,7 +33,7 @@ const Intro: React.FC = () => {
 
         <div className={`${styles.badge}`}>
           <Image
-            src={`/assets/nodejs_icon.png`}
+            src={`/assets/nodejs_icon.webp`}
             height={30}
             width={45}
             alt='js'
@@ -116,7 +116,7 @@ const Projects: React.FC = () => {
 
     <div className={`${styles.items}`}>
       <div>
-        <Image src={'/assets/not-pizza-hut-showcase.png'} width='1980' height='1080' alt='not pizza hut'/>
+        <Image src={'/assets/not-pizza-hut-showcase.webp'} width='1980' height='1080' alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>
         <p>Javascript, Bootstrap, React.js, Firebase</p>
 
@@ -131,7 +131,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/whatsnearme-showcase.png'} width='1980' height='1080' alt='whatsnearme'/>
+        <Image src={'/assets/whatsnearme-showcase.webp'} width='1980' height='1080' alt='whatsnearme'/>
         <h3>WhatsNearMe</h3>
         <p>Vanilla Javascript, Google Map API</p>
 
@@ -146,7 +146,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/trial-alert-showcase.png'} width='1980' height='1080' alt='trial alert'/>
+        <Image src={'/assets/trial-alert-showcase.webp'} width='1980' height='1080' alt='trial alert'/>
         <h3>Trial Alert</h3>
         <p>Node.js, EJS, PostgreSQL, Heroku</p>
 
@@ -161,7 +161,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/noteboard-showcase.png'} width='1980' height='1080' alt='noteboard'/>
+        <Image src={'/assets/noteboard-showcase.webp'} width='1980' height='1080' alt='noteboard'/>
         <h3>Noteboard</h3>
         <p>Vanilla Javascript, Local Storage</p>
 
@@ -176,7 +176,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/blog-showcase.png'} width='1980' height='1080' alt='blog'/>
+        <Image src={'/assets/blog-showcase.webp'} width='1980' height='1080' alt='blog'/>
         <h3>Personal Blog</h3>
         <p>React.js, Bootstrap, MongoDB</p>
 
@@ -220,13 +220,13 @@ const Footer: React.FC = () => {
 
 const Home: NextPage = () => {
   return <Layout noContainer={true}>
-    {/* <div className="alert-light p-2 m-4">
-      <p className="text-center fw-bold my-1">🚧 This site is under construction, some stylings are uncompleted. 🚧</p>
+    <div className="alert-light p-2 m-4">
+      <p className="text-center fw-bold my-1">🚧 The blog is functional but under construction. 🚧</p>
       <p className="text-center">
-        At least the blog is functional, feel free to try it out :D &nbsp;
-        <Link href='/blog' passHref><span className="text-primary inline">Link</span></Link>
+        It may take longer to load the blog since I am using a free database service. &nbsp;
+        {/* <Link href='/blog' passHref><span className="text-primary inline">Link</span></Link> */}
       </p>
-    </div> */}
+    </div>
 
     <Intro />  
     <Showcase />  

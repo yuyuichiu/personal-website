@@ -59,7 +59,7 @@ const Intro: React.FC = () => {
       </div>
 
       <h2>Builds your web projects, evolves with technology.</h2>
-      <p>For years, I have studied various fields of web technologies and transformed what I learnt into responsive webpages and interactive web applications. I am innovated to learn energing technologies on my own, and is open to team collaberation in a job environment. </p>
+      <p>For years, I have studied various fields of web technologies and transformed what I learned into responsive web pages and interactive web applications. I am innovative to learn emerging technologies on my own and am open to team collaboration in a job environment. </p>
       <p>I am armed to be your ally in the journey of web development! Contact me via my business email -- yuichiuyu1915@gmail.com</p>
     </section>
   </div>

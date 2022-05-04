@@ -14,6 +14,8 @@ const Intro: React.FC = () => {
         <div className={`${styles.badge}`}>
           <Image
             src={`/assets/js_icon.webp`}
+            placeholder="blur"
+            blurDataURL={`/assets/js_icon.webp`}
             height={30}
             width={30}
             alt='js'
@@ -24,6 +26,8 @@ const Intro: React.FC = () => {
         <div className={`${styles.badge}`}>
           <Image
             src={`/assets/react_icon.webp`}
+            placeholder="blur"
+            blurDataURL={`/assets/react_icon.webp`}
             height={30}
             width={30}
             alt='react'
@@ -34,6 +38,8 @@ const Intro: React.FC = () => {
         <div className={`${styles.badge}`}>
           <Image
             src={`/assets/nodejs_icon.webp`}
+            placeholder="blur"
+            blurDataURL={`/assets/nodejs_icon.webp`}
             height={30}
             width={45}
             alt='js'
@@ -43,7 +49,7 @@ const Intro: React.FC = () => {
       </div>
 
       <div className={`${styles.avatar}`}>
-        <Image src={`/assets/cropped_yuyuichiu_bg.png`} layout='fill' alt='Profile picture' />
+        <Image src={`/assets/cropped_yuyuichiu_bg.png`} placeholder="blur" blurDataURL={`/assets/cropped_yuyuichiu_bg.png`} layout='fill' alt='Profile picture' />
       </div>
 
       <h2>Builds your web projects, evolves with technology.</h2>
@@ -100,11 +106,11 @@ const Showcase: React.FC = () => {
           </div>
         </SkillMenu>
 
-        <SkillMenu title={'My Qualifications'}>
+        {/* <SkillMenu title={'My Qualifications'}>
           <div className={`${styles.skillList}`}>
-            <div>TODO</div>
+            <h4></h4>
           </div>
-        </SkillMenu>
+        </SkillMenu> */}
       </div>
   </section>
 }
@@ -116,7 +122,7 @@ const Projects: React.FC = () => {
 
     <div className={`${styles.items}`}>
       <div>
-        <Image src={'/assets/not-pizza-hut-showcase.webp'} width='1980' height='1080' alt='not pizza hut'/>
+        <Image src={'/assets/not-pizza-hut-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/not-pizza-hut-showcase.webp'} alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>
         <p>Javascript, Bootstrap, React.js, Firebase</p>
 
@@ -131,7 +137,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/whatsnearme-showcase.webp'} width='1980' height='1080' alt='whatsnearme'/>
+        <Image src={'/assets/whatsnearme-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/whatsnearme-showcase.webp'} alt='whatsnearme'/>
         <h3>WhatsNearMe</h3>
         <p>Vanilla Javascript, Google Map API</p>
 
@@ -146,7 +152,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/trial-alert-showcase.webp'} width='1980' height='1080' alt='trial alert'/>
+        <Image src={'/assets/trial-alert-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/trial-alert-showcase.webp'} alt='trial alert'/>
         <h3>Trial Alert</h3>
         <p>Node.js, EJS, PostgreSQL, Heroku</p>
 
@@ -161,7 +167,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/noteboard-showcase.webp'} width='1980' height='1080' alt='noteboard'/>
+        <Image src={'/assets/noteboard-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/noteboard-showcase.webp'} alt='noteboard'/>
         <h3>Noteboard</h3>
         <p>Vanilla Javascript, Local Storage</p>
 
@@ -176,7 +182,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/blog-showcase.webp'} width='1980' height='1080' alt='blog'/>
+        <Image src={'/assets/blog-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/blog-showcase.webp'} alt='blog'/>
         <h3>Personal Blog</h3>
         <p>React.js, Bootstrap, MongoDB</p>
 

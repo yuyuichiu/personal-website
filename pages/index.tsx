@@ -5,6 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/index.module.scss';
 
+import showcase1 from '../public/assets/not-pizza-hut-showcase.webp';
+import showcase2 from '../public/assets/whatsnearme-showcase.webp';
+import showcase3 from '../public/assets/trial-alert-showcase.webp';
+import showcase4 from '../public/assets/noteboard-showcase.webp';
+import showcase5 from '../public/assets/blog-showcase.webp';
+
 const Intro: React.FC = () => {
   return <div className={`container`}>
     <section className={`${styles.intro}`}>
@@ -122,7 +128,7 @@ const Projects: React.FC = () => {
 
     <div className={`${styles.items}`}>
       <div>
-        <Image src={'/assets/not-pizza-hut-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/not-pizza-hut-showcase.webp'} alt='not pizza hut'/>
+        <Image src={showcase1} placeholder="blur" alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>
         <p>Javascript, Bootstrap, React.js, Firebase</p>
 
@@ -137,7 +143,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/whatsnearme-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/whatsnearme-showcase.webp'} alt='whatsnearme'/>
+        <Image src={showcase2} placeholder="blur" alt='whatsnearme'/>
         <h3>WhatsNearMe</h3>
         <p>Vanilla Javascript, Google Map API</p>
 
@@ -152,7 +158,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/trial-alert-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/trial-alert-showcase.webp'} alt='trial alert'/>
+        <Image src={showcase3} placeholder="blur" alt='trial alert'/>
         <h3>Trial Alert</h3>
         <p>Node.js, EJS, PostgreSQL, Heroku</p>
 
@@ -167,7 +173,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/noteboard-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/noteboard-showcase.webp'} alt='noteboard'/>
+        <Image src={showcase4} placeholder="blur" alt='noteboard'/>
         <h3>Noteboard</h3>
         <p>Vanilla Javascript, Local Storage</p>
 
@@ -182,7 +188,7 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={'/assets/blog-showcase.webp'} width='1980' height='1080' placeholder="blur" blurDataURL={'/assets/blog-showcase.webp'} alt='blog'/>
+        <Image src={showcase5} placeholder="blur" alt='blog'/>
         <h3>Personal Blog</h3>
         <p>React.js, Bootstrap, MongoDB</p>
 

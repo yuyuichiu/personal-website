@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/index.module.scss';
 
+// Image static import
+import companyLogo1 from '../public/assets/uxm_logo.png';
 import showcase1 from '../public/assets/not-pizza-hut-showcase.webp';
 import showcase2 from '../public/assets/whatsnearme-showcase.webp';
 import showcase3 from '../public/assets/trial-alert-showcase.webp';
@@ -73,8 +74,8 @@ interface SkillMenuProps {
 const SkillMenu: React.FC<SkillMenuProps> = (props) => {
   const [open, setOpen] = useState(props.showInitially);
 
-  return <div className='mb-5'>
-    <div className={`${styles.menu} ${open ? styles.active : ''}`} onClick={() => setOpen(!open)}>
+  return <div className={`${styles.skillItem}`}>
+    <div className={`${styles.title} ${open ? styles.active : ''}`} onClick={() => setOpen(!open)}>
       <h3>{props.title}</h3>
       <div className={`${styles.triangle}`}></div>
     </div>
@@ -88,6 +89,12 @@ const SkillMenu: React.FC<SkillMenuProps> = (props) => {
 const Showcase: React.FC = () => {
   return <section className={`${styles.showcase}`}>
       <h2>What I am capable of</h2>
+      <p>
+        List of my capabilities, but not limitations. &nbsp;
+        <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Open on new tab'>
+          Resume
+        </a>
+      </p>
 
       <div className='container pb-5'>
         <SkillMenu title={'Front end skillsets'} showInitially={true}>
@@ -106,17 +113,48 @@ const Showcase: React.FC = () => {
             <div>Node.js</div>
             <div>SQL (MySQL, PostgreSQL)</div>
             <div>NoSQL (MongoDB)</div>
-            <div>Template engines</div>
+            <div>Template engines (EJS)</div>
             <div>Cloud Hosting</div>
             <div>Git</div>
           </div>
         </SkillMenu>
 
-        {/* <SkillMenu title={'My Qualifications'}>
-          <div className={`${styles.skillList}`}>
-            <h4></h4>
+        <SkillMenu title={'My Qualifications'}>
+          <div className="mb-4">
+            <h4 style={{fontSize: '1.2em'}}>Bachelor of Business Administration in City University of Hong Kong</h4>
+            <p style={{color: '#b4b4b4', marginLeft: '1em'}}>Graduated at 2022 | Double Major in Information Management and Accountancy</p>
           </div>
-        </SkillMenu> */}
+          <div className="mb-4">
+            <h4 style={{fontSize: '1.2em'}}>CS50x - Introduction to Computer science
+              <a style={{fontSize: '0.7em'}} href='https://certificates.cs50.io/9a3f14ce-c93a-4b04-8155-9dd4227f3b0c.pdf?size=letter' target='_blank' rel='noreferrer'>
+                &nbsp; (Link to certificate)
+              </a>
+            </h4>
+          </div>
+          <div className="mb-4">
+            <h4 style={{fontSize: '1.2em'}}>freeCodeCamp - Responsive Web Design Certification
+              <a style={{fontSize: '0.7em'}} href='https://www.freecodecamp.org/certification/yuyuichiu/responsive-web-design' target='_blank' rel='noreferrer'>
+                &nbsp; (Link to certificate)
+              </a>
+            </h4>
+          </div>
+        </SkillMenu>
+
+        <h2>Who I worked with</h2>
+        <p>I am glad to work with these awesome clients</p>
+        <div className="d-flex justify-content-center">
+          <div className="mx-4">
+            <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
+              <Image src={companyLogo1} placeholder="blur" width='120' height='40' alt='UXM' title='The UXM - https://music.theuxm.com/'/>
+            </a>
+          </div>
+
+          {/* <div className="mx-4">
+            <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
+              <Image src={companyLogo1} placeholder="blur" width='120' height='40' alt='The UXM'/>
+            </a>
+          </div> */}
+        </div>
       </div>
   </section>
 }
@@ -124,7 +162,7 @@ const Showcase: React.FC = () => {
 const Projects: React.FC = () => {
   return <section className={`${styles.projects} container`}>
     <h2 id='projects'>My past works</h2>
-    <p>Demonstration of my web development learning journey</p>
+    <p>Link to Github contains source code and documentation of these projects</p>
 
     <div className={`${styles.items}`}>
       <div>
@@ -232,11 +270,10 @@ const Footer: React.FC = () => {
 
 const Home: NextPage = () => {
   return <Layout noContainer={true}>
-    <div className="alert-light p-2 m-4">
-      <p className="text-center fw-bold my-1">🚧 The blog is functional but under construction. 🚧</p>
+    <div className="alert-light p-2 mx-5">
+      <p className="text-center fw-bold my-1">🚧 The blog is functional but the styling is under construction. 🚧</p>
       <p className="text-center">
         It may take longer to load the blog since I am using a free database service. &nbsp;
-        {/* <Link href='/blog' passHref><span className="text-primary inline">Link</span></Link> */}
       </p>
     </div>
 

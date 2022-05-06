@@ -93,63 +93,69 @@
   h2 {
     color: #98956D;
     text-align: center;
-    padding: 1.5em 0;
+    padding: 1.5em 0 0.2em 0;
     font-weight: 700;
   }
 
-  .menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 4em;
-    background-color: var(--main-bg-color);
-
-    h3 {
-      padding: 0 0.5em;
-      font-weight: 700;
-    }
-
-    .triangle {
-      position: relative;
-      top: 0.5em;
-      width: 0;
-      height: 0;
-      margin: 0 0.5em;
-      border: 1em solid transparent;
-      border-top: 1em solid #C0B300;
-    }
-
-    &.active .triangle {
-      border-top: 1em solid transparent;
-      border-bottom: 1em solid #C0B300;
-      top: -0.5em;
-    }
+  h2 + p {
+    text-align: center;
+    padding-bottom: 1em;
+    color: var(--text-secondary-color);
   }
 
-  .content {
-    height: auto;
-    max-height: 0px;
-    overflow: hidden;
-  }
+  .skillItem {
+    border: 4px #98956D solid;
+    margin-bottom: 1em;
 
-  .content.active {
-    max-height: 1000px;
-    transition: 0.3s;
-    padding: 1em;
-    border: 1px solid #98956D;
-  }
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5em 0.7em;
+      cursor: pointer;
 
-  .skillList {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 0 1 25%;
-    
-    div {
-      width: 25%;
+      h3 {
+        font-size: 1.5em;
+      }
 
-      &::before {
-        content: '>   ';
-        font-weight: 700;
+      .triangle {
+        border: 0.7em solid transparent;
+        border-top: 1em solid #c3bf8b;
+        transform: translateY(20%);
+
+      }
+      
+      &.active .triangle {
+        border-top: 0.7em solid transparent;
+        border-bottom: 1em solid #c3bf8b;
+        transform:translateY(-20%);
+      }
+    }
+
+    .content {
+      height: auto;
+      max-height: 0px;
+      overflow: hidden;
+    }
+  
+    .content.active {
+      max-height: 1000px;
+      transition: 0.3s;
+      padding: 1em;
+    }
+  
+    .skillList {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 1 25%;
+      
+      div {
+        width: 25%;
+  
+        &::before {
+          content: '>   ';
+          font-weight: 700;
+        }
       }
     }
   }
@@ -159,10 +165,13 @@
       font-size: 1.2em;
     }
 
-    .skillList {
-      flex: 0 1 1;
-      div {
-        width: 100%;
+    .skillItem {
+      .skillList {
+        flex: 0 1 1;
+
+        div {
+          width: 100%;
+        }
       }
     }
   }

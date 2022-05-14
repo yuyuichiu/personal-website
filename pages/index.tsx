@@ -6,11 +6,13 @@ import styles from '../styles/index.module.scss';
 
 // Image static import
 import companyLogo1 from '../public/assets/uxm_logo.png';
+import companyLogo2 from '../public/assets/sunsmart_brand.webp';
 import showcase1 from '../public/assets/not-pizza-hut-showcase.webp';
 import showcase2 from '../public/assets/whatsnearme-showcase.webp';
 import showcase3 from '../public/assets/trial-alert-showcase.webp';
 import showcase4 from '../public/assets/noteboard-showcase.webp';
 import showcase5 from '../public/assets/blog-showcase.webp';
+import showcase6 from '../public/assets/sunsmart_showcase.webp';
 
 const Intro: React.FC = () => {
   return <div className={`container`}>
@@ -142,18 +144,18 @@ const Showcase: React.FC = () => {
 
         <h2>Who I worked with</h2>
         <p>I am glad to work with these awesome clients</p>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center align-items-center">
           <div className="mx-4">
             <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
-              <Image src={companyLogo1} placeholder="blur" width='120' height='40' alt='UXM' title='The UXM - https://music.theuxm.com/'/>
+              <Image src={companyLogo1} placeholder="blur" width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
             </a>
           </div>
 
-          {/* <div className="mx-4">
-            <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
-              <Image src={companyLogo1} placeholder="blur" width='120' height='40' alt='The UXM'/>
+          <div className="mx-4">
+            <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
+              <Image src={companyLogo2} placeholder="blur" width='160' height='40' title='Sun Smart Learning Centre' alt='Sun smart'/>
             </a>
-          </div> */}
+          </div>
         </div>
       </div>
   </section>
@@ -165,6 +167,21 @@ const Projects: React.FC = () => {
     <p>Link to Github contains source code and documentation of these projects</p>
 
     <div className={`${styles.items}`}>
+      <div>
+        <Image src={showcase6} placeholder="blur" alt='sun smart showcase'/>
+        <h3>日月思教育中心 - Landing page</h3>
+        <p>React.js, Typescript, Web Design, CSS3 Animation</p>
+
+        <p>I designed &#38; built a modern landing page for a local learning centre</p>
+
+        <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
+          <button className='button'>Github</button>
+        </a>
+        <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
+          <button className='button'>Live Website</button>
+        </a>
+      </div>
+
       <div>
         <Image src={showcase1} placeholder="blur" alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>

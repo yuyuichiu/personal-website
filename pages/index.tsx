@@ -7,6 +7,7 @@ import styles from '../styles/index.module.scss';
 // Image static import
 import companyLogo1 from '../public/assets/uxm_logo.png';
 import companyLogo2 from '../public/assets/sunsmart_brand.webp';
+import companyLogo3 from '../public/assets/cityu_esu_logo.svg';
 import showcase1 from '../public/assets/not-pizza-hut-showcase.webp';
 import showcase2 from '../public/assets/whatsnearme-showcase.webp';
 import showcase3 from '../public/assets/trial-alert-showcase.webp';
@@ -58,7 +59,7 @@ const Intro: React.FC = () => {
       </div>
 
       <div className={`${styles.avatar}`}>
-        <Image src={`/assets/cropped_yuyuichiu_bg.png`} placeholder="blur" blurDataURL={`/assets/cropped_yuyuichiu_bg.png`} layout='fill' alt='Profile picture' />
+        <Image src={`/assets/cropped_yuyuichiu_bg.webp`} placeholder="blur" blurDataURL={`/assets/cropped_yuyuichiu_bg.webp`} layout='fill' alt='Profile picture' />
       </div>
 
       <h2>Builds your web projects, evolves with technology.</h2>
@@ -110,7 +111,7 @@ const Showcase: React.FC = () => {
           </div>
         </SkillMenu>
         
-        <SkillMenu title={'Server-side and miscellaneous technologies'} showInitially={true}>
+        <SkillMenu title={'Backend & others'} showInitially={true}>
           <div className={`${styles.skillList}`}>
             <div>Node.js</div>
             <div>SQL (MySQL, PostgreSQL)</div>
@@ -144,16 +145,22 @@ const Showcase: React.FC = () => {
 
         <h2>Who I worked with</h2>
         <p>I am glad to work with these awesome clients</p>
-        <div className="d-flex justify-content-center align-items-center">
-          <div className="mx-4">
+        <div className="row mx-md-5">
+          <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
+            <a href='https://www.cityu.edu.hk/esu/' target='_blank' rel='noreferrer'>
+              <Image src={companyLogo3} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
+            </a>
+          </div>
+
+          <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
             <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
               <Image src={companyLogo1} placeholder="blur" width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
             </a>
           </div>
 
-          <div className="mx-4">
+          <div className="col-md-4 col-12 my-2 d-flex justify-content-center">
             <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
-              <Image src={companyLogo2} placeholder="blur" width='160' height='40' title='Sun Smart Learning Centre' alt='Sun smart'/>
+              <Image src={companyLogo2} placeholder="blur" width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/>
             </a>
           </div>
         </div>

@@ -1,19 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import "bootstrap/dist/css/bootstrap.css";
 @import "highlight.js/styles/idea.css";
-
-// @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
   --main-bg-color: #F7FFCE;
   --main-secondary-color: #F6FA84;
   --text-secondary-color: #6e6e6e;
   --brownish-color: #98956D;
-}
-
-@font-face {
-  font-family: 'Inconsolata';
-  src: url('../public/assets/Inconsolata-VariableFont_wdth\,wght.ttf');
 }
 
 body {

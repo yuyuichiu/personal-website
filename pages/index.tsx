@@ -8,12 +8,12 @@ import styles from '../styles/index.module.scss';
 import companyLogo1 from '../public/assets/uxm_logo.png';
 import companyLogo2 from '../public/assets/sunsmart_brand.webp';
 import companyLogo3 from '../public/assets/cityu_esu_logo.svg';
-import showcase1 from '../public/assets/not-pizza-hut-showcase.webp';
-import showcase2 from '../public/assets/whatsnearme-showcase.webp';
-import showcase3 from '../public/assets/trial-alert-showcase.webp';
-import showcase4 from '../public/assets/noteboard-showcase.webp';
-import showcase5 from '../public/assets/blog-showcase.webp';
-import showcase6 from '../public/assets/sunsmart_showcase.webp';
+import showcase1 from '../public/assets/not-pizza-hut-showcase-mf.webp';
+import showcase2 from '../public/assets/whatsnearme-showcase-mf.webp';
+import showcase3 from '../public/assets/trial-alert-showcase-mf.webp';
+import showcase4 from '../public/assets/noteboard-showcase-mf.webp';
+import showcase5 from '../public/assets/blog-showcase-mf.webp';
+import showcase6 from '../public/assets/sunsmart_showcase-mf.webp';
 
 const Intro: React.FC = () => {
   return <div className={`container`}>
@@ -94,13 +94,13 @@ const Showcase: React.FC = () => {
       <h2>What I am capable of</h2>
       <p>
         List of my capabilities, but not limitations. &nbsp;
-        <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Open on new tab'>
+        <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Resume (Open on new tab)'>
           Resume
         </a>
       </p>
 
       <div className='container pb-5'>
-        <SkillMenu title={'Front end skillsets'} showInitially={true}>
+        <SkillMenu title={'Front-end skillsets'} showInitially={true}>
           <div className={`${styles.skillList}`}>
             <div>HTML, CSS, Javascript</div>
             <div>Responsive Design</div>
@@ -111,7 +111,7 @@ const Showcase: React.FC = () => {
           </div>
         </SkillMenu>
         
-        <SkillMenu title={'Backend & others'} showInitially={true}>
+        <SkillMenu title={'Server-side & others'} showInitially={true}>
           <div className={`${styles.skillList}`}>
             <div>Node.js</div>
             <div>SQL (MySQL, PostgreSQL)</div>

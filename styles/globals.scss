@@ -1,4 +1,3 @@
-//@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import "bootstrap/dist/css/bootstrap.css";
 @import "highlight.js/styles/idea.css";
 
@@ -30,7 +29,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Lato', 'Segoe UI', sans-serif;
+  font-family: 'Lato', 'Segoe UI', 'Roboto', 'Verdana', sans-serif, "Microsoft YaHei";
   background-color: var(--main-bg-color);
   scroll-behavior: smooth;
 }

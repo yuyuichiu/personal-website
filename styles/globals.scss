@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import "bootstrap/dist/css/bootstrap.css";
 @import "highlight.js/styles/idea.css";
 
@@ -9,11 +9,28 @@
   --brownish-color: #98956D;
 }
 
+@font-face {
+  font-family: 'Lato';
+  src: url('../public/assets/fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../public/assets/fonts/Lato-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../public/assets/fonts/Lato-Italic.ttf');
+  font-style: italic;
+}
+
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', 'Segoe UI', sans-serif;
   background-color: var(--main-bg-color);
   scroll-behavior: smooth;
 }

@@ -183,7 +183,8 @@ const Projects: React.FC = () => {
 
     <div className={`${styles.items}`}>
       <div>
-        <Image src={showcase6} placeholder="blur" alt='sun smart showcase'/>
+        {/* <Image src={showcase6} placeholder="blur" alt='sun smart showcase'/> */}
+        <img src={'/assets/sunsmart_showcase-mf.webp'} alt='sun smart showcase'/>
         <h3>日月思教育中心 - Landing page</h3>
         <p>React.js, Typescript, Web Design, CSS3 Animation</p>
 
@@ -198,7 +199,8 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={showcase1} placeholder="blur" alt='not pizza hut'/>
+        {/* <Image src={showcase1} placeholder="blur" alt='not pizza hut'/> */}
+        <img src={'/assets/not-pizza-hut-showcase-mf.webp'} alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>
         <p>Javascript, Bootstrap, React.js, Firebase</p>
 
@@ -213,7 +215,8 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={showcase2} placeholder="blur" alt='whatsnearme'/>
+        {/* <Image src={showcase2} placeholder="blur" alt='whatsnearme'/> */}
+        <img src={'/assets/whatsnearme-showcase-mf.webp'} alt='whatsnearme'/>
         <h3>WhatsNearMe</h3>
         <p>Vanilla Javascript, Google Map API</p>
 
@@ -228,7 +231,8 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={showcase3} placeholder="blur" alt='trial alert'/>
+        {/* <Image src={showcase3} placeholder="blur" alt='trial alert'/> */}
+        <img src={'/assets/trial-alert-showcase-mf.webp'} alt='trial alert' />
         <h3>Trial Alert</h3>
         <p>Node.js, EJS, PostgreSQL, Heroku</p>
 
@@ -243,7 +247,8 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={showcase4} placeholder="blur" alt='noteboard'/>
+        {/* <Image src={showcase4} placeholder="blur" alt='noteboard'/> */}
+        <img src={'/assets/noteboard-showcase-mf.webp'} alt='Noteboard' />
         <h3>Noteboard</h3>
         <p>Vanilla Javascript, Local Storage</p>
 
@@ -258,7 +263,8 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        <Image src={showcase5} placeholder="blur" alt='blog'/>
+        {/* <Image src={showcase5} placeholder="blur" alt='blog'/> */}
+        <img src={'/assets/blog-showcase-mf.webp'} alt='blog' />
         <h3>Personal Blog</h3>
         <p>React.js, Bootstrap, MongoDB</p>
 

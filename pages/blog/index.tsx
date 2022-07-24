@@ -42,7 +42,7 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
           {props.articles.filter((x: any) => x.title.toLowerCase().includes(query.toLowerCase()) || x.body.toLowerCase().includes(query.toLowerCase())).map((article: any) => {
             return <Link key={article._id} href={`/blog/posts/${article._id}`} passHref>
               <ListGroup.Item className={`${styles.post}`} action>
-                {article.preview_image && <img src={article.preview_image} alt='preview' />}
+                {article.preview_image && <img src={article.preview_image} alt='preview'/>}
                 <div className={`${styles.post_info}`}>
                   <h3>{article.title}</h3>
                   <div className={`${styles.subset}`}>

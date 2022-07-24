@@ -5,9 +5,9 @@ import Image from 'next/image';
 import styles from '../styles/index.module.scss';
 
 // Image static import
-import companyLogo1 from '../public/assets/uxm_logo.png';
+/* import companyLogo1 from '../public/assets/uxm_logo.png';
 import companyLogo2 from '../public/assets/sunsmart_brand.webp';
-import companyLogo3 from '../public/assets/cityu_esu_logo.svg';
+import companyLogo3 from '../public/assets/cityu_esu_logo.svg'; */
 import showcase1 from '../public/assets/not-pizza-hut-showcase-mf.webp';
 import showcase2 from '../public/assets/whatsnearme-showcase-mf.webp';
 import showcase3 from '../public/assets/trial-alert-showcase-mf.webp';
@@ -22,7 +22,7 @@ const Intro: React.FC = () => {
       <div>
         <p>Full stack web developer</p>
         <div className={`${styles.badge}`}>
-          <Image
+          {/* <Image
             src={`/assets/js_icon.webp`}
             placeholder="blur"
             blurDataURL={`/assets/js_icon.webp`}
@@ -30,11 +30,12 @@ const Intro: React.FC = () => {
             width={30}
             alt='js'
             title='Javascript'>
-          </Image>
+          </Image> */}
+          <img src={'/assets/js_icon.webp'} alt='js' />
         </div>
         
         <div className={`${styles.badge}`}>
-          <Image
+          {/* <Image
             src={`/assets/react_icon.webp`}
             placeholder="blur"
             blurDataURL={`/assets/react_icon.webp`}
@@ -42,11 +43,12 @@ const Intro: React.FC = () => {
             width={30}
             alt='react'
             title='React.js'>
-          </Image>
+          </Image> */}
+          <img src={'/assets/react_icon.webp'} alt='react' />
         </div>
 
         <div className={`${styles.badge}`}>
-          <Image
+          {/* <Image
             src={`/assets/nodejs_icon.webp`}
             placeholder="blur"
             blurDataURL={`/assets/nodejs_icon.webp`}
@@ -54,12 +56,16 @@ const Intro: React.FC = () => {
             width={45}
             alt='js'
             title='Node.js'>
-          </Image>
+          </Image> */}
+          <img src={'/assets/nodejs_icon.jpg'} alt='node.js' />
         </div>
       </div>
 
       <div className={`${styles.avatar}`}>
-        <Image src={`/assets/cropped_yuyuichiu_bg.webp`} placeholder="blur" blurDataURL={`/assets/cropped_yuyuichiu_bg.webp`} layout='fill' alt='Profile picture' />
+       {/*  
+       <Image src={`/assets/cropped_yuyuichiu_bg.webp`} placeholder="blur" blurDataURL={`/assets/cropped_yuyuichiu_bg.webp`} layout='fill' alt='Profile picture' /> 
+       */}
+       <img src={'/assets/cropped_yuyuichiu_bg.webp'} alt='Profile picture' />
       </div>
 
       <h2>Builds your web projects, evolves with technology.</h2>
@@ -148,19 +154,21 @@ const Showcase: React.FC = () => {
         <div className="row mx-md-5">
           <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
             <a href='https://www.cityu.edu.hk/esu/' target='_blank' rel='noreferrer'>
-              <Image src={companyLogo3} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
+              <Image src={'/assets/cityu_esu_logo.svg'} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
             </a>
           </div>
 
           <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
             <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
-              <Image src={companyLogo1} placeholder="blur" width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
+              {/* <Image src={companyLogo1} placeholder="blur" width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/> */}
+              <img src={'/assets/uxm_logo.png'} width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
             </a>
           </div>
 
           <div className="col-md-4 col-12 my-2 d-flex justify-content-center">
             <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
-              <Image src={companyLogo2} placeholder="blur" width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/>
+              {/* <Image src={companyLogo2} placeholder="blur" width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/> */}
+              <img src={'/assets/sunsmart_brand.webp'} width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/>
             </a>
           </div>
         </div>

@@ -18,6 +18,10 @@ const Articles : NextPage<{articles: any, image: any}> = (props) => {
         <LoginStatusBar />
       </div>
       <section className={`${styles.blog}`}>
+        <div className="alert-light p-2 mx-5 my-2">
+          <p className="text-center fw-bold my-1">🚧 The blog is functional but is under construction. 🚧</p>
+        </div>
+
         <div className={`${styles.toolbar}`}>
           <h2 className='m-2'>Blog</h2>
           <div className={`${styles.search}`}>

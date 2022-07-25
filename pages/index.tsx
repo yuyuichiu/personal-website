@@ -1,12 +1,15 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-import Image from 'next/image';
 import styles from '../styles/index.module.scss';
 
 const Intro: React.FC = () => {
   return <div className={`container`}>
     <section className={`${styles.intro}`}>
+      <div className={`${styles.avatar_mobile}`}>
+       <img src={'/assets/cropped_yuyuichiu_bg.webp'} title='Profile picture' />
+      </div>
+
       <h1>Dave Yu</h1>
       <div>
         <p>Full stack web developer</p>
@@ -29,7 +32,7 @@ const Intro: React.FC = () => {
 
       <h2>Builds your web projects, evolves with technology.</h2>
       <p>For years, I have studied various fields of web technologies and transformed what I learned into responsive web pages and interactive web applications. I am innovative to learn emerging technologies on my own and am open to team collaboration in a job environment. </p>
-      <p>I am armed to be your ally in the journey of web development! Contact me via my business email -- yuichiuyu1915@gmail.com</p>
+      <p>I am armed to be your ally in the journey of web development! Contact me via my business email -- 📧 yuichiuyu1915@gmail.com</p>
     </section>
   </div>
 }
@@ -59,9 +62,7 @@ const Showcase: React.FC = () => {
       <h2>What I am capable of</h2>
       <p>
         List of my capabilities, but not limitations. &nbsp;
-        <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Resume (Open on new tab)'>
-          Resume
-        </a>
+        <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Resume (Open on new tab)'>Resume</a>
       </p>
 
       <div className='container pb-5'>
@@ -113,7 +114,7 @@ const Showcase: React.FC = () => {
         <div className="row mx-md-5">
           <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
             <a href='https://www.cityu.edu.hk/esu/' target='_blank' rel='noreferrer'>
-              <Image src={'/assets/cityu_esu_logo.svg'} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
+              <img src={'/assets/cityu_esu_logo.svg'} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
             </a>
           </div>
 
@@ -143,7 +144,7 @@ const Projects: React.FC = () => {
         {/* <Image src={showcase6} placeholder="blur" alt='sun smart showcase'/> */}
         <img src={'/assets/sunsmart_showcase-mf.webp'} alt='sun smart showcase'/>
         <h3>日月思教育中心 - Landing page</h3>
-        <p>React.js, Typescript, Web Design, CSS3 Animation</p>
+        <p>React.js, Typescript, Web Design, CSS3 Animations</p>
 
         <p>I designed &#38; built a modern landing page for a local learning centre</p>
 
@@ -161,7 +162,7 @@ const Projects: React.FC = () => {
         <h3>Not Pizza Hut</h3>
         <p>Javascript, Bootstrap, React.js, Firebase</p>
 
-        <p>My attempt to rebuilt the official pizza hut website with React.js</p>
+        <p>I recreated the pizza hut online order website with React.js</p>
 
         <a href='https://github.com/yuyuichiu/not-pizza-hut' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>
@@ -252,9 +253,9 @@ const Footer: React.FC = () => {
       </a>
     </p>
     <p>
-      Contact via email: yuichiuyu1915@gmail.com
+      Email 📧: yuichiuyu1915@gmail.com
       <button
-        className='btn text-primary'
+        className='btn btn-sm text-primary'
         onClick={() => {navigator.clipboard.writeText('yuichiuyu1915@gmail.com')}}
       >
         Copy
@@ -265,13 +266,6 @@ const Footer: React.FC = () => {
 
 const Home: NextPage = () => {
   return <Layout noContainer={true}>
-    <div className="alert-light p-2 mx-5">
-      <p className="text-center fw-bold my-1">🚧 The blog is functional but the styling is under construction. 🚧</p>
-      <p className="text-center">
-        It may take longer to load the blog since I am using a free database service. &nbsp;
-      </p>
-    </div>
-
     <Intro />  
     <Showcase />  
     <Projects />

@@ -47,11 +47,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-a:hover {
   cursor: pointer;
-  color: black;
+  
+  &:hover {
+    color: inherit;
+  }
 }
 
 /* Buttons */

@@ -1,21 +1,20 @@
 import Link from "next/link";
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { BsPerson, BsFillPersonFill } from "react-icons/bs";
-import { Button } from "react-bootstrap";
 import AuthContext from "../context/authContext";
 
 
 const LoginStatusBar: React.FC = () => {
   const authCtx = useContext(AuthContext);
-  const logoutHandler = () => authCtx.onLogout();;
+  const logoutHandler = () => authCtx.onLogout();
 
   return (
     <>
       {authCtx.isAuthenticated && 
         <div className="d-flex align-items-center">
           <BsFillPersonFill size={20} />
-          <span className="mx-1">{authCtx.username}</span>
-          <span className="text-secondary d-none d-md-block" role='button' onClick={logoutHandler}>(Logout)</span>
+          <span className="mx-1 fst-italic">{authCtx.username}</span>
+          <span className="text-secondary" role='button' onClick={logoutHandler}>(<span className='text-danger'>Logout</span>)</span>
         </div>
       }
 

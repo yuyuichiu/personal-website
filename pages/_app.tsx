@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           setIsAuth(false);
           setUsername(null);
           setRole(1);
+          router.reload();
         })
     },
   }

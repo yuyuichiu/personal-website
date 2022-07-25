@@ -21,7 +21,6 @@ const Login: NextPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   useEffect(() => {
-    // Extracting ref with react form hook is too annoying.
     document.getElementById('username')?.focus();
   }, [])
 
@@ -43,8 +42,8 @@ const Login: NextPage = () => {
       console.log('Set-Cookie: token=' + result.session)
       cookie.set('token', result.session);
       authCtx.onLogin();
-      setTimeout(() => router.back(), 1000);
-      setTimeout(() => setShow(false), 1000);
+      setTimeout(() => router.back(), 500);
+      setTimeout(() => setShow(false), 500);
     }
 
     setLoading(false);

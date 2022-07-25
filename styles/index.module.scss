@@ -18,6 +18,26 @@
     }
   }
 
+  .avatar_mobile {
+    display: none;
+    margin: auto;
+    margin-top: 2em;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
   h1 {
     margin: 1.5em  0 0.5em 0;
     font-weight: 700;
@@ -63,6 +83,7 @@
   @media screen and (max-width: 768px) {
     h1 {
       text-align: center;
+      margin: .5em 0;
     }
 
     .avatar {
@@ -72,6 +93,8 @@
     h1 + div {
       flex-wrap: wrap;
       justify-content: center;
+      height: auto;
+      margin: 2em 0;
 
       p {
         width: 100%;

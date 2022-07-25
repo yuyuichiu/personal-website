@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { NextPage } from "next";
-import Layout from "../../../components/Layout";
-import Link from "next/link";
-import styles from '../../../styles/blogpost.module.scss'
+import { Modal, Button } from "react-bootstrap";
 import { BsFillHouseDoorFill, BsFillPencilFill, BsTrashFill } from 'react-icons/bs';
-import { Modal, Button, Toast } from "react-bootstrap";
+import Link from "next/link";
 import router from 'next/router';
 import Cookies from 'js-cookie';
+import Layout from "../../../components/Layout";
+import styles from '../../../styles/blogpost.module.scss'
 import CustomMarkdown from '../../../components/CustomMarkdown';
 import AuthContext from '../../../context/authContext';
 import LoginStatusBar from '../../../components/LoginStatusBar';
@@ -84,6 +84,7 @@ const Post: NextPage<any> = (props) => {
           <img 
             className={`${styles.blogImage}`}
             src={props.post.preview_image}
+            alt='preview'
           />}
           <CustomMarkdown className="mt-3">
             {`${props.post.body}`}

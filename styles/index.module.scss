@@ -153,25 +153,19 @@
         width: 25%;
   
         &::before {
-          content: '>   ';
-          font-weight: 700;
+          content: '➼ ';
+          color: var(--brownish-color);
         }
       }
     }
   }
 
-  @media (max-width: 768px) {
-    h3 {
-      font-size: 1.2em;
-    }
+  @media (max-width: 1080px) {
+    h3 { font-size: 1.2em; }
 
     .skillItem {
       .skillList {
-        flex: 0 1 1;
-
-        div {
-          width: 100%;
-        }
+        div { width: 50%; }
       }
     }
   }

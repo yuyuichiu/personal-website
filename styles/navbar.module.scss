@@ -1,38 +1,40 @@
 .nav {
+  display: flex;
   position: fixed;
+  background-color: #A09E85;
   top: 0;
   width: 100%;
-  background-color: #A09E85;
   height: 3em;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
-.nav a {
+.nav button {
   position: relative;
   display: inline-block;
+  background-color: inherit;
   color: #fff;
   margin: 0 1em;
+  border: none;
 }
 
-.nav a::before {
+.nav button::before {
   content: "";
-  position: absolute;
   width: 0px;
   height: 3px;
   left: -0.3em;
-  bottom: calc(-1em + 4.2px);
+  position: absolute;
+  bottom: calc(4.2px - 1em);
   background-color: #FFFF9F;
-  transition: all 0.3s;
+  transition: all 300ms;
 }
 
-.nav a:hover {
+.nav button:hover, .nav button a:hover {
   color: #FFFF9F;
 }
 
-.nav a:hover::before {
+.nav button:hover::before {
   width: calc(100% + 0.6em);
 }
 

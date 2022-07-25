@@ -1,26 +1,29 @@
-import Link from "next/link";
-import Router from "next/router";
-import style from '../styles/navbar.module.scss';
+import { useRouter } from 'next/router'
+import style from '../styles/navbar.module.scss'
 
 const NavBar: React.FC = (props) => {
-  const scrollToTop = () => {
-    Router.push('/');
-    document.querySelector("body")!.scrollTo(0,0);
+  const router = useRouter()
+
+  const goToTop = () => router.push('/')
+  const goToBlog = () => router.push('/blog')
+
+  const goToProjects = () => {
+    let loc = document.getElementById('projects')?.getBoundingClientRect().top! + window.scrollY - 100
+    loc ? window.scrollTo(0, loc) : router.push('/#projects')
+  }
+
+  const goToFooter = () => {
+    let loc = document.getElementById('contact')?.getBoundingClientRect().top! + window.scrollY - 100
+    loc ? window.scrollTo(0, loc) : router.push('/#footer')
   }
 
   return (
     <>
       <nav className={`${style.nav}`}>
-        <a href="#" onClick={scrollToTop}>Home</a>
-        <Link href='/#projects'>
-          <a>Projects</a>
-        </Link>
-        <Link href='/#contact'>
-          <a>Contact</a>
-        </Link>
-        <Link href='/blog'>
-          <a>Blog</a>
-        </Link>
+        <button type='button' onClick={goToTop}>Home</button>
+        <button type='button' onClick={goToProjects}>Projects</button>
+        <button type='button' onClick={goToFooter}>Contact</button>
+        <button type='button' onClick={goToBlog}>Blog</button>
       </nav>
 
       <div className={`${style.offset}`}></div>

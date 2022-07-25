@@ -4,17 +4,6 @@ import Layout from '../components/Layout';
 import Image from 'next/image';
 import styles from '../styles/index.module.scss';
 
-// Image static import
-/* import companyLogo1 from '../public/assets/uxm_logo.png';
-import companyLogo2 from '../public/assets/sunsmart_brand.webp';
-import companyLogo3 from '../public/assets/cityu_esu_logo.svg'; */
-import showcase1 from '../public/assets/not-pizza-hut-showcase-mf.webp';
-import showcase2 from '../public/assets/whatsnearme-showcase-mf.webp';
-import showcase3 from '../public/assets/trial-alert-showcase-mf.webp';
-import showcase4 from '../public/assets/noteboard-showcase-mf.webp';
-import showcase5 from '../public/assets/blog-showcase-mf.webp';
-import showcase6 from '../public/assets/sunsmart_showcase-mf.webp';
-
 const Intro: React.FC = () => {
   return <div className={`container`}>
     <section className={`${styles.intro}`}>
@@ -22,50 +11,20 @@ const Intro: React.FC = () => {
       <div>
         <p>Full stack web developer</p>
         <div className={`${styles.badge}`}>
-          {/* <Image
-            src={`/assets/js_icon.webp`}
-            placeholder="blur"
-            blurDataURL={`/assets/js_icon.webp`}
-            height={30}
-            width={30}
-            alt='js'
-            title='Javascript'>
-          </Image> */}
-          <img src={'/assets/js_icon.webp'} alt='js' />
+          <img src={'/assets/js_icon.webp'} title='Proficient in Javascript' />
         </div>
         
         <div className={`${styles.badge}`}>
-          {/* <Image
-            src={`/assets/react_icon.webp`}
-            placeholder="blur"
-            blurDataURL={`/assets/react_icon.webp`}
-            height={30}
-            width={30}
-            alt='react'
-            title='React.js'>
-          </Image> */}
-          <img src={'/assets/react_icon.webp'} alt='react' />
+          <img src={'/assets/react_icon.webp'} title='Proficient in React.js' />
         </div>
 
         <div className={`${styles.badge}`}>
-          {/* <Image
-            src={`/assets/nodejs_icon.webp`}
-            placeholder="blur"
-            blurDataURL={`/assets/nodejs_icon.webp`}
-            height={30}
-            width={45}
-            alt='js'
-            title='Node.js'>
-          </Image> */}
-          <img src={'/assets/nodejs_icon.jpg'} alt='node.js' />
+          <img src={'/assets/nodejs_icon.jpg'} title='Proficient in Node.js' />
         </div>
       </div>
 
       <div className={`${styles.avatar}`}>
-       {/*  
-       <Image src={`/assets/cropped_yuyuichiu_bg.webp`} placeholder="blur" blurDataURL={`/assets/cropped_yuyuichiu_bg.webp`} layout='fill' alt='Profile picture' /> 
-       */}
-       <img src={'/assets/cropped_yuyuichiu_bg.webp'} alt='Profile picture' />
+       <img src={'/assets/cropped_yuyuichiu_bg.webp'} title='Profile picture' />
       </div>
 
       <h2>Builds your web projects, evolves with technology.</h2>
@@ -96,7 +55,7 @@ const SkillMenu: React.FC<SkillMenuProps> = (props) => {
 }
 
 const Showcase: React.FC = () => {
-  return <section className={`${styles.showcase}`}>
+  return <section id='showcase' className={`${styles.showcase}`}>
       <h2>What I am capable of</h2>
       <p>
         List of my capabilities, but not limitations. &nbsp;
@@ -106,7 +65,7 @@ const Showcase: React.FC = () => {
       </p>
 
       <div className='container pb-5'>
-        <SkillMenu title={'Front-end skillsets'} showInitially={true}>
+        <SkillMenu title={'Front-end skillsets'} showInitially={false}>
           <div className={`${styles.skillList}`}>
             <div>HTML, CSS, Javascript</div>
             <div>Responsive Design</div>
@@ -117,7 +76,7 @@ const Showcase: React.FC = () => {
           </div>
         </SkillMenu>
         
-        <SkillMenu title={'Server-side & others'} showInitially={true}>
+        <SkillMenu title={'Server-side & others'} showInitially={false}>
           <div className={`${styles.skillList}`}>
             <div>Node.js</div>
             <div>SQL (MySQL, PostgreSQL)</div>
@@ -128,10 +87,10 @@ const Showcase: React.FC = () => {
           </div>
         </SkillMenu>
 
-        <SkillMenu title={'My Qualifications'}>
+        <SkillMenu title={'My Qualifications'} showInitially={false}>
           <div className="mb-4">
             <h4 style={{fontSize: '1.2em'}}>Bachelor of Business Administration in City University of Hong Kong</h4>
-            <p style={{color: '#b4b4b4', marginLeft: '1em'}}>Graduated at 2022 | Double Major in Information Management and Accountancy</p>
+            <p style={{color: '#b4b4b4', marginLeft: '1em'}}>2018~2022 | Double Major in Information Management and Accountancy</p>
           </div>
           <div className="mb-4">
             <h4 style={{fontSize: '1.2em'}}>CS50x - Introduction to Computer science
@@ -160,14 +119,12 @@ const Showcase: React.FC = () => {
 
           <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
             <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
-              {/* <Image src={companyLogo1} placeholder="blur" width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/> */}
               <img src={'/assets/uxm_logo.png'} width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
             </a>
           </div>
 
           <div className="col-md-4 col-12 my-2 d-flex justify-content-center">
             <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
-              {/* <Image src={companyLogo2} placeholder="blur" width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/> */}
               <img src={'/assets/sunsmart_brand.webp'} width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/>
             </a>
           </div>
@@ -177,8 +134,8 @@ const Showcase: React.FC = () => {
 }
 
 const Projects: React.FC = () => {
-  return <section className={`${styles.projects} container`}>
-    <h2 id='projects'>My past works</h2>
+  return <section id='projects' className={`${styles.projects} container`}>
+    <h2>My past works</h2>
     <p>Link to Github contains source code and documentation of these projects</p>
 
     <div className={`${styles.items}`}>
@@ -280,7 +237,7 @@ const Projects: React.FC = () => {
 }
 
 const Footer: React.FC = () => {
-  return <div className={`${styles.footer}`}>
+  return <div id='footer' className={`${styles.footer}`}>
     <h2 id='contact'>Contact &#38; Resume</h2>
     <p>
       View my resume: &nbsp;

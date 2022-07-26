@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
         <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>
         </a>
-        <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
+        <a href='https://sunsm.art' target='_blank' rel='noreferrer'>
           <button className='button'>Live Website</button>
         </a>
       </div>

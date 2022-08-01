@@ -13,7 +13,7 @@ const Layout : React.FC<LayoutProps> = (props) => {
   return <>
     <Head>
       <title>{props.title ? props.title : "Dave Yu | Full-Stack Web Developer"}</title>
-      <meta name="description" content="Personal Website of Dave Yu" />
+      <meta name="description" content="Yu Yui Chiu (Dave), an experienced web developer who builds your project and evolves with technology." />
       <link rel="icon" href={webIcon.src} />
     </Head>
 

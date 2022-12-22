@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     // Get authentication data based on stored Cookie
-    auth();
+    // auth();
     
     // Loading Events on router change
     const routeChangeStartHandler = (url: string) => {

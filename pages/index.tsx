@@ -62,7 +62,7 @@ const Showcase: React.FC = () => {
       <h2>What I am capable of</h2>
       <p>
         List of my capabilities, but not limitations. &nbsp;
-        <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Resume (Open on new tab)'>Resume</a>
+        <a href='./assets/CV202212.pdf' target='_blank' rel='noreferrer' className='text-primary' title='Resume (Open on new tab)'>Resume</a>
       </p>
 
       <div className='container pb-5'>
@@ -242,7 +242,7 @@ const Footer: React.FC = () => {
     <h2 id='contact'>Contact &#38; Resume</h2>
     <p>
       View my resume: &nbsp;
-      <a href='https://yuyuichiu-personal.s3.us-west-1.amazonaws.com/Yu+Yui+Chiu_CV_2022.pdf' target='_blank' rel='noreferrer' className='text-primary'>
+      <a href='./assets/CV202212.pdf' target='_blank' rel='noreferrer' className='text-primary'>
         Open in new tab
       </a>
     </p>

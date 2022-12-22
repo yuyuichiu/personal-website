@@ -23,7 +23,7 @@ const NavBar: React.FC = (props) => {
         <button type='button' onClick={goToTop}>Home</button>
         <button type='button' onClick={goToProjects}>Projects</button>
         <button type='button' onClick={goToFooter}>Contact</button>
-        <button type='button' onClick={goToBlog}>Blog</button>
+        {/* <button type='button' onClick={goToBlog}>Blog</button> */}
       </nav>
 
       <div className={`${style.offset}`}></div>

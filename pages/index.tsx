@@ -12,17 +12,21 @@ const Intro: React.FC = () => {
 
       <h1>Dave Yu</h1>
       <div>
-        <p>Full stack web developer</p>
+        <p>Full stack programmer</p>
         <div className={`${styles.badge}`}>
-          <img src={'/assets/js_icon.webp'} title='Proficient in Javascript' />
+          <img src={'/assets/js_icon.webp'} title='Proficient in JavaScript' />
         </div>
         
+        <div className={`${styles.badge}`}>
+          <img src={'/assets/nodejs_icon.jpg'} title='Proficient in Node.js' />
+        </div>
+
         <div className={`${styles.badge}`}>
           <img src={'/assets/react_icon.webp'} title='Proficient in React.js' />
         </div>
 
         <div className={`${styles.badge}`}>
-          <img src={'/assets/nodejs_icon.jpg'} title='Proficient in Node.js' />
+          <img src={'/assets/oracle_icon.webp'} width="30" height="30" title='Proficient in Oracle DB' />
         </div>
       </div>
 
@@ -30,7 +34,7 @@ const Intro: React.FC = () => {
        <img src={'/assets/cropped_yuyuichiu_bg.webp'} title='Profile picture' />
       </div>
 
-      <h2>Builds your web projects, evolves with technology.</h2>
+      <h2>Builds your vision, evolves with technology.</h2>
       <p>For years, I have studied various fields of web technologies and transformed what I learned into responsive web pages and interactive web applications. I am innovative to learn emerging technologies on my own and am open to team collaboration in a job environment. </p>
       <p>I am armed to be your ally in the journey of web development! Contact me via my business email -- 📧 yuichiuyu1915@gmail.com</p>
     </section>
@@ -68,7 +72,7 @@ const Showcase: React.FC = () => {
       <div className='container pb-5'>
         <SkillMenu title={'Front-end skillsets'} showInitially={false}>
           <div className={`${styles.skillList}`}>
-            <div>HTML, CSS, Javascript</div>
+            <div>HTML, CSS, JavaScript</div>
             <div>Responsive Design</div>
             <div>React.js</div>
             <div>Bootstrap</div>
@@ -136,17 +140,61 @@ const Showcase: React.FC = () => {
 
 const Projects: React.FC = () => {
   return <section id='projects' className={`${styles.projects} container`}>
-    <h2>My past works</h2>
-    <p>Link to Github contains source code and documentation of these projects</p>
+    <h2>My professional projects</h2>
+    <p>Source code are not available due to privacy reason.</p>
+    
+    <div className={`${styles.items}`}>
+      <div>
+        <img src={'/assets/csrs-showcase.png'} alt='Community Service Record System showcase'/>
+        <h3>Community Service Record System (CSRS)</h3>
+        <p>JavaScript, jQuery, PL/SQL</p>
+
+        <p>I collaborated with my manager to gather user requirements and develop a system that digitizes the management of student development activities at CityU.</p>
+        <p>Capability: process excel files, generate reports, integrate with QuestionPro</p>
+
+        <a href='/assets/CSRS User Guide.pdf' target='_blank' rel='noreferrer'>
+          <button className='button'>User guide</button>
+        </a>
+      </div>
+
+      <div>
+        <img src={'/assets/cocurricular-showcase.png'} alt='co-curricular transcript showcase'/>
+        <h3>Co-curricular Transcript for CityU students</h3>
+        <p>Node.js, PDF Generation, PL/SQL</p>
+
+        <p>Generate report via Node.js. Summarizes of co-curricular achievement of students.</p>
+
+        <a href='/assets/curricular-sample.pdf' target='_blank' rel='noreferrer'>
+          <button className='button'>Demo PDF</button>
+        </a>
+
+        <a href='https://www.cityu.edu.hk/e-certification/5xd912e9' target='_blank' rel='noreferrer'>
+          <button className='button' onClick={() => alert("Access code: f9ktrs3y (copy it first)")}>Live Example</button>
+        </a>
+
+      </div>
+
+      <div>
+        <img src={'/assets/admission-showcase.png'} alt='admission system showcase'/>
+        <h3>Revamp CityU Admission System</h3>
+        <p>.NET, Oracle DB</p>
+
+        <p>Revamps old software system phase by phase to streamline existing workflow and enhance user experience.</p>
+
+        {/* <button className='button'>Details (TODO)</button> */}
+      </div>
+    </div>
+
+    <h2>Personal projects</h2>
+    <p>My open-source projects.</p>
 
     <div className={`${styles.items}`}>
       <div>
-        {/* <Image src={showcase6} placeholder="blur" alt='sun smart showcase'/> */}
         <img src={'/assets/sunsmart_showcase-mf.webp'} alt='sun smart showcase'/>
         <h3>日月思教育中心 - Landing page</h3>
         <p>React.js, Typescript, Web Design, CSS3 Animations</p>
 
-        <p>I designed &#38; built a modern landing page for a local learning centre</p>
+        <p>I created a modern landing page for a local learning centre</p>
 
         <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>
@@ -157,10 +205,9 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        {/* <Image src={showcase1} placeholder="blur" alt='not pizza hut'/> */}
         <img src={'/assets/not-pizza-hut-showcase-mf.webp'} alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>
-        <p>Javascript, Bootstrap, React.js, Firebase</p>
+        <p>React.js, Bootstrap, JavaScript</p>
 
         <p>I recreated the pizza hut online order website with React.js</p>
 
@@ -173,12 +220,11 @@ const Projects: React.FC = () => {
       </div>
 
       <div>
-        {/* <Image src={showcase2} placeholder="blur" alt='whatsnearme'/> */}
         <img src={'/assets/whatsnearme-showcase-mf.webp'} alt='whatsnearme'/>
         <h3>WhatsNearMe</h3>
-        <p>Vanilla Javascript, Google Map API</p>
+        <p>Google Map API, JavaScript</p>
 
-        <p>A web application to find your nearest target places conveniently.</p>
+        <p>A web application to find your nearest target places conveniently</p>
 
         <a href='https://github.com/yuyuichiu/whatsnearme-hk' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>
@@ -187,53 +233,8 @@ const Projects: React.FC = () => {
           <button className='button'>Live Website</button>
         </a>
       </div>
-
-      <div>
-        {/* <Image src={showcase3} placeholder="blur" alt='trial alert'/> */}
-        <img src={'/assets/trial-alert-showcase-mf.webp'} alt='trial alert' />
-        <h3>Trial Alert</h3>
-        <p>Node.js, EJS, PostgreSQL, Heroku</p>
-
-        <p>A web application to remind important moments with scheduled emails.</p>
-
-        <a href='https://github.com/yuyuichiu/trial-alert' target='_blank' rel='noreferrer'>
-          <button className='button'>Github</button>
-        </a>
-        <a href='https://trial-alert-webapp.herokuapp.com/' target='_blank' rel='noreferrer'>
-          <button className='button'>Live Website</button>
-        </a>
-      </div>
-
-      <div>
-        {/* <Image src={showcase4} placeholder="blur" alt='noteboard'/> */}
-        <img src={'/assets/noteboard-showcase-mf.webp'} alt='Noteboard' />
-        <h3>Noteboard</h3>
-        <p>Vanilla Javascript, Local Storage</p>
-
-        <p>A simple web application to jot down notes digitally.</p>
-
-        <a href='https://github.com/yuyuichiu/noteboard-web' target='_blank' rel='noreferrer'>
-          <button className='button'>Github</button>
-        </a>
-        <a href='https://yuyuichiu.github.io/noteboard-web/' target='_blank' rel='noreferrer'>
-          <button className='button'>Live Website</button>
-        </a>
-      </div>
-
-      <div>
-        {/* <Image src={showcase5} placeholder="blur" alt='blog'/> */}
-        <img src={'/assets/blog-showcase-mf.webp'} alt='blog' />
-        <h3>Personal Blog</h3>
-        <p>React.js, Bootstrap, MongoDB</p>
-
-        <p>(Work in Progress) A blog where user can upload, edit and view other posts.</p>
-
-        <a href='https://www.yuyuichiu.com/blog' target='_blank' rel='noreferrer'>
-          <button className='button'>Live Website</button>
-        </a>
-      </div>
-
     </div>
+    
   </section>
 }
 

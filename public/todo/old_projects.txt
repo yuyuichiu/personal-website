@@ -1,0 +1,41 @@
+{/* <div>
+        <img src={'/assets/trial-alert-showcase-mf.webp'} alt='trial alert' />
+        <h3>Trial Alert</h3>
+        <p>Node.js, EJS, PostgreSQL, Heroku</p>
+
+        <p>A web application to remind important moments with scheduled emails.</p>
+
+        <a href='https://github.com/yuyuichiu/trial-alert' target='_blank' rel='noreferrer'>
+          <button className='button'>Github</button>
+        </a>
+        <a href='https://trial-alert-webapp.herokuapp.com/' target='_blank' rel='noreferrer'>
+          <button className='button'>Live Website</button>
+        </a>
+      </div> */}
+
+      {/* <div>
+        <img src={'/assets/noteboard-showcase-mf.webp'} alt='Noteboard' />
+        <h3>Noteboard</h3>
+        <p>Vanilla Javascript, Local Storage</p>
+
+        <p>A simple web application to jot down notes digitally.</p>
+
+        <a href='https://github.com/yuyuichiu/noteboard-web' target='_blank' rel='noreferrer'>
+          <button className='button'>Github</button>
+        </a>
+        <a href='https://yuyuichiu.github.io/noteboard-web/' target='_blank' rel='noreferrer'>
+          <button className='button'>Live Website</button>
+        </a>
+      </div> */}
+
+      {/* <div>
+        <img src={'/assets/blog-showcase-mf.webp'} alt='blog' />
+        <h3>Personal Blog</h3>
+        <p>React.js, Bootstrap, MongoDB</p>
+
+        <p>(Work in Progress) A blog where user can upload, edit and view other posts.</p>
+
+        <a href='https://www.yuyuichiu.com/blog' target='_blank' rel='noreferrer'>
+          <button className='button'>Live Website</button>
+        </a>
+      </div> */}

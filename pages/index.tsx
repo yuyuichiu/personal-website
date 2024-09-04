@@ -149,7 +149,7 @@ const Projects: React.FC = () => {
         <h3>Community Service Record System (CSRS)</h3>
         <p>JavaScript, jQuery, PL/SQL</p>
 
-        <p>I collaborated with my manager to gather user requirements and develop a system that digitizes the management of student development activities at CityU.</p>
+        <p>Gathered user requirements and developed a system to digitizes the management of student development activities held by CityU.</p>
         <p>Capability: process excel files, generate reports, integrate with QuestionPro</p>
 
         <a href='/assets/CSRS User Guide.pdf' target='_blank' rel='noreferrer'>
@@ -162,10 +162,10 @@ const Projects: React.FC = () => {
         <h3>Co-curricular Transcript for CityU students</h3>
         <p>Node.js, PDF Generation, PL/SQL</p>
 
-        <p>Generate report via Node.js. Summarizes of co-curricular achievement of students.</p>
+        <p>Generate PDF report via Node.js that summarizes of co-curricular achievement of students.</p>
 
         <a href='/assets/curricular-sample.pdf' target='_blank' rel='noreferrer'>
-          <button className='button'>Demo PDF</button>
+          <button className='button'>Sample PDF</button>
         </a>
 
         <a href='https://www.cityu.edu.hk/e-certification/5xd912e9' target='_blank' rel='noreferrer'>
@@ -176,12 +176,14 @@ const Projects: React.FC = () => {
 
       <div>
         <img src={'/assets/admission-showcase.png'} alt='admission system showcase'/>
-        <h3>Revamp CityU Admission System</h3>
+        <h3>CityU Admission System</h3>
         <p>.NET, Oracle DB</p>
 
-        <p>Revamps old software system phase by phase to streamline existing workflow and enhance user experience.</p>
-
-        {/* <button className='button'>Details (TODO)</button> */}
+        <p>Revamps an internal software system to streamline existing workflow and enhance user experience.</p>
+        
+        <a href='/assets/admission_system_layout.pdf' target='_blank' rel='noreferrer'>
+          <button className='button'>System Overview</button>
+        </a>
       </div>
     </div>
 
@@ -194,7 +196,7 @@ const Projects: React.FC = () => {
         <h3>日月思教育中心 - Landing page</h3>
         <p>React.js, Typescript, Web Design, CSS3 Animations</p>
 
-        <p>I created a modern landing page for a local learning centre</p>
+        <p>Created a modern landing page for a local learning centre</p>
 
         <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>
@@ -209,7 +211,7 @@ const Projects: React.FC = () => {
         <h3>Not Pizza Hut</h3>
         <p>React.js, Bootstrap, JavaScript</p>
 
-        <p>I recreated the pizza hut online order website with React.js</p>
+        <p>Recreated the pizza hut online order website with React.js</p>
 
         <a href='https://github.com/yuyuichiu/not-pizza-hut' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>

@@ -1,7 +1,48 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import Label from '../components/Label';
 import styles from '../styles/index.module.scss';
+
+const ContactButtons: React.FC = () => {
+  return <div className='d-flex justify-content-center'>
+    <a href='mailto:yuichiuyu1915@gmail.com' target='_blank' rel='noreferrer'>
+        <button className='button'>Email</button>
+      </a>
+      <a href='https://www.linkedin.com/in/yuyuichiu/' target='_blank' rel='noreferrer'>
+        <button className='button'>LinkedIn</button>
+      </a>
+      <a href='/assets/resume2024.pdf' target='_blank' rel='noreferrer'>
+        <button className='button'>Resume</button>
+      </a>
+  </div>
+}
+
+const WhoIWorkedWirh: React.FC = () => {
+  return <div>
+    <h2 className='mb-0'>Who I worked with</h2>
+      <p className='text-center'>I am glad to work with these awesome clients</p>
+      <div className="row mx-md-5">
+        <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
+          <a href='https://www.cityu.edu.hk/esu/' target='_blank' rel='noreferrer'>
+            <img src={'/assets/cityu_esu_logo.svg'} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
+          </a>
+        </div>
+
+        <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
+          <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
+            <img src={'/assets/uxm_logo.png'} width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
+          </a>
+        </div>
+
+        <div className="col-md-4 col-12 my-2 d-flex justify-content-center">
+          <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
+            <img src={'/assets/sunsmart_brand.webp'} width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/>
+          </a>
+        </div>
+      </div>
+  </div>
+}
 
 const Intro: React.FC = () => {
   return <div className={`container`}>
@@ -20,7 +61,7 @@ const Intro: React.FC = () => {
           <img src={'/assets/nodejs_icon.jpg'} title='Proficient in Node.js' />
         </div>
 
-        <p className='text-center'>IT Specialist in Web Development and Database Administration</p>
+        <p className='text-center'>IT Specialist in Web Development and Databases</p>
 
         <div className={`${styles.badge}`}>
           <img src={'/assets/react_icon.webp'} title='Proficient in React.js' />
@@ -36,14 +77,7 @@ const Intro: React.FC = () => {
       </div>
       <h2>Builds your vision, evolves with technology.</h2> */}
 
-      <div className='d-flex justify-content-center mb-2'>
-        <a href='https://www.linkedin.com/in/yuyuichiu/' target='_blank' rel='noreferrer'>
-          <button className='button'>LinkedIn</button>
-        </a>
-        <a href='/assets/TODO.pdf' target='_blank' rel='noreferrer'>
-          <button className='button'>Resume</button>
-        </a>
-      </div>
+      <ContactButtons />
       {/* <p>For years, I have studied various fields of web technologies and transformed what I learned into responsive web pages and interactive web applications. I am innovative to learn emerging technologies on my own and am open to team collaboration in a job environment. </p>
       <p>I am armed to be your ally in the journey of web development! Contact me via my business email -- 📧 yuichiuyu1915@gmail.com</p> */}
 
@@ -73,32 +107,6 @@ const SkillMenu: React.FC<SkillMenuProps> = (props) => {
     <div className={`${styles.content} ${open ? styles.active : ''}`}>
       {props.children}
     </div>
-  </div>
-}
-
-const WhoIWorkedWirh: React.FC = () => {
-  return <div>
-    <h2 className='mb-0'>Who I worked with</h2>
-      <p className='text-center'>I am glad to work with these awesome clients</p>
-      <div className="row mx-md-5">
-        <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
-          <a href='https://www.cityu.edu.hk/esu/' target='_blank' rel='noreferrer'>
-            <img src={'/assets/cityu_esu_logo.svg'} width='200' height='50' title='Enterprise Solution Office@City University of Hong Kong' alt='CityU'/>
-          </a>
-        </div>
-
-        <div className="col-md-4 col-6 my-2 d-flex justify-content-center">
-          <a href='https://music.theuxm.com/' target='_blank' rel='noreferrer'>
-            <img src={'/assets/uxm_logo.png'} width='140' height='40' title='The UXM - https://music.theuxm.com/' alt='UXM'/>
-          </a>
-        </div>
-
-        <div className="col-md-4 col-12 my-2 d-flex justify-content-center">
-          <a href='https://sunsmart.netlify.app/' target='_blank' rel='noreferrer'>
-            <img src={'/assets/sunsmart_brand.webp'} width='180' height='50' title='Sun Smart Learning Centre' alt='Sun smart'/>
-          </a>
-        </div>
-      </div>
   </div>
 }
 
@@ -172,7 +180,7 @@ const Qualifications: React.FC = () => {
         <SkillMenu title={'Front-end skillsets'} showInitially={true}>
           <div className={`${styles.skillList}`}>
             <div>HTML, CSS, JavaScript</div>
-            <div>Responsive Design</div>
+            <div>ASP.NET (Web & API)</div>
             <div>React.js</div>
             <div>Bootstrap</div>
             <div>Essential web design</div>
@@ -183,10 +191,10 @@ const Qualifications: React.FC = () => {
         <SkillMenu title={'Server-side & others'} showInitially={true}>
           <div className={`${styles.skillList}`}>
             <div>Node.js</div>
-            <div>SQL (MySQL, PostgreSQL)</div>
+            <div>SQL (Oracle, MS SQL Server)</div>
             <div>NoSQL (MongoDB)</div>
             <div>Template engines (EJS)</div>
-            <div>Cloud Hosting</div>
+            <div>Azure</div>
             <div>Git</div>
           </div>
         </SkillMenu>
@@ -201,9 +209,32 @@ const Projects: React.FC = () => {
     
     <div className={`${styles.items}`}>
       <div>
+        <img src={'/assets/sunsmart_showcase-mf.webp'} alt='sun smart showcase'/>
+        <h3>日月思教育中心 - Landing page</h3>
+        <p>
+          <Label useStyle='react'>React.js</Label>
+          <Label>TypeScript</Label>
+          <Label>CSS Animations</Label>
+          <Label>Web Design</Label>
+        </p>
+
+        <p>Made a modern landing page for a local learning centre</p>
+
+        <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
+          <button className='button'>Github</button>
+        </a>
+        <a href='https://sunsm.art' target='_blank' rel='noreferrer'>
+          <button className='button'>Live Website</button>
+        </a>
+      </div>
+      <div>
         <img src={'/assets/csrs-showcase.png'} alt='Community Service Record System showcase'/>
         <h3>Community Service Record System (CSRS)</h3>
-        <p>JavaScript, jQuery, PL/SQL</p>
+        <p>
+          <Label>JavaScript</Label>
+          <Label>jQuery</Label>
+          <Label>PL/SQL</Label>
+        </p>
 
         <p>Gathered user requirements and developed a system to digitizes the management of student development activities held by CityU.</p>
         <p>Capability: process excel files, generate reports, integrate with QuestionPro</p>
@@ -216,7 +247,11 @@ const Projects: React.FC = () => {
       <div>
         <img src={'/assets/cocurricular-showcase.png'} alt='co-curricular transcript showcase'/>
         <h3>Co-curricular Transcript for CityU students</h3>
-        <p>Node.js, PDF Generation, PL/SQL</p>
+        <p>
+          <Label>Node.js</Label>
+          <Label>PDF Generation</Label>
+          <Label>PL/SQL</Label>
+        </p>
 
         <p>Generate PDF report via Node.js that summarizes of co-curricular achievement of students.</p>
 
@@ -233,27 +268,15 @@ const Projects: React.FC = () => {
       <div>
         <img src={'/assets/admission-showcase.png'} alt='admission system showcase'/>
         <h3>CityU Admission System</h3>
-        <p>ASP.NET (Web & API), Oracle DB</p>
+        <p>
+          <Label>ASP.NET (Web & API)</Label>
+          <Label>Oracle DB</Label>
+        </p>
 
         <p>Revamps an internal software system to streamline existing workflow and enhance user experience.</p>
         
         <a href='/assets/admission_system_layout.pdf' target='_blank' rel='noreferrer'>
           <button className='button'>System Overview</button>
-        </a>
-      </div>
-
-      <div>
-        <img src={'/assets/sunsmart_showcase-mf.webp'} alt='sun smart showcase'/>
-        <h3>日月思教育中心 - Landing page</h3>
-        <p>React.js, Typescript, Web Design, CSS3 Animations</p>
-
-        <p>Created a modern landing page for a local learning centre</p>
-
-        <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
-          <button className='button'>Github</button>
-        </a>
-        <a href='https://sunsm.art' target='_blank' rel='noreferrer'>
-          <button className='button'>Live Website</button>
         </a>
       </div>
     </div>
@@ -265,7 +288,11 @@ const Projects: React.FC = () => {
       <div>
         <img src={'/assets/not-pizza-hut-showcase-mf.webp'} alt='not pizza hut'/>
         <h3>Not Pizza Hut</h3>
-        <p>React.js, Bootstrap, JavaScript</p>
+        <p>
+          <Label>React.js</Label>
+          <Label>Bootstrap</Label>
+          <Label>JavaScript</Label>
+        </p>
 
         <p>Recreated the pizza hut online order website with React.js</p>
 
@@ -280,7 +307,10 @@ const Projects: React.FC = () => {
       <div>
         <img src={'/assets/whatsnearme-showcase-mf.webp'} alt='whatsnearme'/>
         <h3>WhatsNearMe</h3>
-        <p>Google Map API, JavaScript</p>
+        <p>
+          <Label>Google Map API</Label>
+          <Label>JavaScript</Label>
+        </p>
 
         <p>A web application to find your nearest target places conveniently</p>
 
@@ -327,17 +357,8 @@ const Footer: React.FC = () => {
   return <div className='footer'>
     <hr></hr>
     <p className='text-center mb-0'>Thank you for reading my website!</p>
-    <div className='d-flex justify-content-center'>
-      <a href='mailto:yuichiuyu1915@gmail.com' target='_blank' rel='noreferrer'>
-        <button className='button'>Email</button>
-      </a>
-      <a href='https://www.linkedin.com/in/yuyuichiu/' target='_blank' rel='noreferrer'>
-        <button className='button'>LinkedIn</button>
-      </a>
-      <a href='/assets/TODO.pdf' target='_blank' rel='noreferrer'>
-        <button className='button'>Resume</button>
-      </a>
-    </div>
+    <ContactButtons />
+    <small>Copy</small>
     <br></br>
   </div>
 }

@@ -18,7 +18,7 @@ const ContactButtons: React.FC = () => {
   </div>
 }
 
-const WhoIWorkedWirh: React.FC = () => {
+const WhoIWorkedWith: React.FC = () => {
   return <div>
     <h2 className='mb-0'>Who I worked with</h2>
       <p className='text-center'>I am glad to work with these awesome clients</p>
@@ -41,6 +41,8 @@ const WhoIWorkedWirh: React.FC = () => {
           </a>
         </div>
       </div>
+
+      <br></br>
   </div>
 }
 
@@ -53,21 +55,21 @@ const Intro: React.FC = () => {
 
       <h1 className='text-center'>Dave Yu</h1>
       <div>
-        <div className={`${styles.badge}`}>
+        <div className={`${styles.badge} d-md-block d-none`}>
           <img src={'/assets/js_icon.webp'} title='Proficient in JavaScript' />
         </div>
         
-        <div className={`${styles.badge}`}>
+        <div className={`${styles.badge} d-md-block d-none`}>
           <img src={'/assets/nodejs_icon.jpg'} title='Proficient in Node.js' />
         </div>
 
         <p className='text-center'>IT Specialist in Web Development and Databases</p>
 
-        <div className={`${styles.badge}`}>
+        <div className={`${styles.badge} d-md-block d-none`}>
           <img src={'/assets/react_icon.webp'} title='Proficient in React.js' />
         </div>
 
-        <div className={`${styles.badge}`}>
+        <div className={`${styles.badge} d-md-block d-none`}>
           <img src={'/assets/oracle_icon.webp'} width="30" height="30" title='Proficient in Oracle DB' />
         </div>
       </div>
@@ -84,7 +86,7 @@ const Intro: React.FC = () => {
       {/* Qualifications */}
 
       {/* Who I worked with */}
-      {/* <WhoIWorkedWirh /> */}
+      {/* <WhoIWorkedWith /> */}
     </section>
     <hr></hr>
   </div>
@@ -114,7 +116,7 @@ const Qualifications: React.FC = () => {
   return <section id='showcase' className={`${styles.showcase}`}>
       <h2>My qualifications</h2>
 
-      <div className='container pb-5'>
+      <div className='container pb-2'>
         <table className='table table-bordered'>
           <tbody>
             <tr>
@@ -177,42 +179,48 @@ const Qualifications: React.FC = () => {
         </table>
 
         {/* Rework these skillset */}
-        <SkillMenu title={'Front-end skillsets'} showInitially={true}>
+        <SkillMenu title={'Programming Languages / Databases'} showInitially={true}>
           <div className={`${styles.skillList}`}>
-            <div>HTML, CSS, JavaScript</div>
             <div>ASP.NET (Web & API)</div>
+            <div>Python</div>
             <div>React.js</div>
-            <div>Bootstrap</div>
-            <div>Essential web design</div>
-            <div>Cross browser compatibility</div>
+            <div>Node.js</div>
+            <div>HTML, CSS, JavaScript</div>
+            <div>Oracle DB</div>
+            <div>PL/SQL</div>
+            <div>Microsoft SQL Server</div>
           </div>
         </SkillMenu>
 
-        <SkillMenu title={'Server-side & others'} showInitially={true}>
+        <SkillMenu title={'IT skillsets'} showInitially={true}>
           <div className={`${styles.skillList}`}>
-            <div>Node.js</div>
-            <div>SQL (Oracle, MS SQL Server)</div>
-            <div>NoSQL (MongoDB)</div>
-            <div>Template engines (EJS)</div>
-            <div>Azure</div>
-            <div>Git</div>
+            <div>Git & Github</div>
+            <div>Using VM (Linux)</div>
+            <div>Load testing (jMeter)</div>
+            <div>Cloud computing (Azure)</div>
+            <div>Apply Single Sign-On (Okta)</div>
+            <div>Writing comprehensive data views</div>
+            <div>Apply encryption</div>
+            <div>Database Migration</div>
           </div>
         </SkillMenu>
       </div>
+
+      <WhoIWorkedWith />
   </section>
 }
 
 const Projects: React.FC = () => {
   return <section id='projects' className={`${styles.projects} container`}>
     <h2>My professional projects</h2>
-    <p className='mb-0'>Source code are not available due to privacy reason.</p>
+    <p className='mb-0'>Source code may not be available due to privacy reason.</p>
     
     <div className={`${styles.items}`}>
       <div>
         <img src={'/assets/sunsmart_showcase-mf.webp'} alt='sun smart showcase'/>
         <h3>日月思教育中心 - Landing page</h3>
         <p>
-          <Label useStyle='react'>React.js</Label>
+          <Label>React.js</Label>
           <Label>TypeScript</Label>
           <Label>CSS Animations</Label>
           <Label>Web Design</Label>
@@ -220,13 +228,29 @@ const Projects: React.FC = () => {
 
         <p>Made a modern landing page for a local learning centre</p>
 
-        <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
+        {/* <a href='https://github.com/yuyuichiu/sun-smart-learning-centre' target='_blank' rel='noreferrer'>
           <button className='button'>Github</button>
-        </a>
+        </a> */}
         <a href='https://sunsm.art' target='_blank' rel='noreferrer'>
           <button className='button'>Live Website</button>
         </a>
       </div>
+
+      <div>
+        <img src={'/assets/admission-showcase.png'} alt='admission system showcase'/>
+        <h3>CityU Admission System</h3>
+        <p>
+          <Label>ASP.NET (Web & API)</Label>
+          <Label>Oracle DB</Label>
+        </p>
+
+        <p>Revamps an internal software system to streamline existing workflow and enhance user experience.</p>
+        
+        <a href='/assets/admission_system_layout.pdf' target='_blank' rel='noreferrer'>
+          <button className='button'>System Overview</button>
+        </a>
+      </div>
+
       <div>
         <img src={'/assets/csrs-showcase.png'} alt='Community Service Record System showcase'/>
         <h3>Community Service Record System (CSRS)</h3>
@@ -246,6 +270,7 @@ const Projects: React.FC = () => {
 
       <div>
         <img src={'/assets/cocurricular-showcase.png'} alt='co-curricular transcript showcase'/>
+        {/* <img src={'/assets/co-cu.png'} /> */}
         <h3>Co-curricular Transcript for CityU students</h3>
         <p>
           <Label>Node.js</Label>
@@ -255,29 +280,18 @@ const Projects: React.FC = () => {
 
         <p>Generate PDF report via Node.js that summarizes of co-curricular achievement of students.</p>
 
-        <a href='/assets/curricular-sample.pdf' target='_blank' rel='noreferrer'>
+        {/* <a href='/assets/curricular-sample.pdf' target='_blank' rel='noreferrer'>
           <button className='button'>Sample PDF</button>
+        </a> */}
+
+        <a href='https://www.cityu.edu.hk/studentlife/co-curricular_transcript.aspx#:~:text=Co%2Dcurricular%20Transcript%20is%20a,services%2C%20summer%20internships%2C%20etc.' target='_blank' rel='noreferrer'>
+          <button className='button'>About the system</button>
         </a>
 
         <a href='https://www.cityu.edu.hk/e-certification/5xd912e9' target='_blank' rel='noreferrer'>
           <button className='button' onClick={() => alert("Access code: f9ktrs3y (copy it first)")}>Live Example</button>
         </a>
 
-      </div>
-
-      <div>
-        <img src={'/assets/admission-showcase.png'} alt='admission system showcase'/>
-        <h3>CityU Admission System</h3>
-        <p>
-          <Label>ASP.NET (Web & API)</Label>
-          <Label>Oracle DB</Label>
-        </p>
-
-        <p>Revamps an internal software system to streamline existing workflow and enhance user experience.</p>
-        
-        <a href='/assets/admission_system_layout.pdf' target='_blank' rel='noreferrer'>
-          <button className='button'>System Overview</button>
-        </a>
       </div>
     </div>
 
@@ -326,39 +340,11 @@ const Projects: React.FC = () => {
   </section>
 }
 
-/* const Footer: React.FC = () => {
-  return <div id='footer' className={`${styles.footer}`}>
-    <h2 id='contact'>Contact &#38; Resume</h2>
-    <p>
-      View my resume: &nbsp;
-      <a href='./assets/CV202212.pdf' target='_blank' rel='noreferrer' className='text-primary'>
-        Open in new tab
-      </a>
-    </p>
-    <p>
-      Linkedin: &nbsp;
-      <a href='https://www.linkedin.com/in/yuyuichiu/' className='text-primary' target='_blank' rel='noreferrer'>
-        Link
-      </a>
-    </p>
-    <p>
-      Email 📧: yuichiuyu1915@gmail.com
-      <button
-        className='btn btn-sm text-primary'
-        onClick={() => {navigator.clipboard.writeText('yuichiuyu1915@gmail.com')}}
-      >
-        Copy
-      </button>
-    </p>
-  </div>
-} */
-
 const Footer: React.FC = () => {
   return <div className='footer'>
     <hr></hr>
     <p className='text-center mb-0'>Thank you for reading my website!</p>
     <ContactButtons />
-    <small>Copy</small>
     <br></br>
   </div>
 }

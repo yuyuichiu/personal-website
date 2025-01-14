@@ -136,6 +136,16 @@ const Qualifications: React.FC = () => {
               <td align={'left'} colSpan={2}><h3 style={{fontSize: '1em', margin: '0px', fontWeight: '700'}}>Certifications  </h3></td>
             </tr>
             <tr>
+              <td>2025</td>
+              <td>
+                <h4 style={{fontSize: '1.2em'}}>AWS Certified AI Practitioner
+                  <a style={{fontSize: '0.7em'}} href='https://www.credly.com/badges/5e2a0631-ab2d-41be-964d-81c606279eb2/public_url' target='_blank' rel='noreferrer'>
+                    &nbsp; (Link to certificate)
+                  </a>
+                </h4>
+              </td>
+            </tr>
+            <tr>
               <td>2024</td>
               <td>
                 <h4 style={{fontSize: '1.2em'}}>Microsoft Certified: Azure Database Administrator Associate
